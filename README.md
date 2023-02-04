@@ -72,6 +72,6 @@ Below is a summarized version of the repository's project structure:
 |_ pom.xml
 ```
 
-## :safety-pin: Plugins
+## :safety_pin: Plugins
 
 - **Java Spring Format**: Java linter to ensure that the project maintains a consistent style
