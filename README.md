@@ -6,6 +6,7 @@
 Please have the following software:
 - Java 17
 - Maven 3.\*.\*
+- Postgres 15
 
 **NOTE: If you do not have maven installed locally, you may use `./mvwn` instead of `mvn`**
 
@@ -39,7 +40,7 @@ mvn spring-boot:run
 - **Postgres (Version 14)**: Relational Database to persist all data of the project
 - **Google Cloud Provider (Version 3.3.0)**: Host the project's database
 - **Cucumber (Version 7.1.1)**: Software to perform acceptance testing
-- **JUnit 5**: Software to execute the Gherkin scenarios
+- **JUnit**: Software to execute the Gherkin scenarios
 
 ## :bookmark_tabs: Project Structure
 Below is a summarized version of the repository's project structure:
@@ -48,7 +49,9 @@ Below is a summarized version of the repository's project structure:
 3. `model`: all Java Classes used throughout the project
 4. `repository`: all CRUD methods to persist with the relational database
 5. `service`: all business logic will reside in this folder
-6. `acceptance`: all acceptance tests
+6. `acceptance`: acceptance test suite resides in this folder
+7. `stepDefinitions`: all step definitions
+8. `features`: all gherkin scenarios reside in this folder
 
 ```
 *
@@ -68,7 +71,10 @@ Below is a summarized version of the repository's project structure:
         |_ java
             |_ ca.mcgill.ecse428.moviejunkie
                 |_ acceptance                           # 6
+                    |_ stepDefinitions                  # 7
                 |_ MovieJunkieApplicationTests.java
+        |_ resources
+            |_ features                                 # 8
 |_ pom.xml
 ```
 
