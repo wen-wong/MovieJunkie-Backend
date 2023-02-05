@@ -14,7 +14,11 @@ Please have the following software:
 ```
 git clone https://github.com/wen-wong/MovieJunkie-Backend.git
 ```
-2. Create a file called `application.properties` and paste the following code
+2. Create a folder under `src/main/`
+```
+mkdir ./src/main/resources
+```
+3. Create a file called `application.properties` and paste the following code
 ```
 cd ./src/main/resources
 touch application.properties
@@ -31,19 +35,19 @@ spring.jpa.properties.hibernate.format_sql=true
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect    # Driver to allows the project to understand Postgres
 ```
 **NOTE: Fill in all `<>` in the code above**
-3. Build the maven project and install the project files
+4. Build the maven project and install the project files
 ```
 ./mvnw clean install
 ```
-4. Format all java files
+5. Format all java files
 ```
 mvn spring-javaformat:apply
 ```
-5. Run all acceptance test
+6. Run all acceptance test
 ```
 mvn test
 ```
-6. Run the project locally
+7. Run the project locally
 ```
 mvn spring-boot:run
 ```
