@@ -26,4 +26,5 @@ jobs:
         # Gradle version to use
         gradle-version: 7.2
     - name: Build with Gradle
-      run: gradle build
+      run: ./gradlew build
+      working-directory: MovieJunkie-Backend
