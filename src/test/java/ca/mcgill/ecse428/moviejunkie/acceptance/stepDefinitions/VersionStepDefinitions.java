@@ -11,25 +11,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VersionStepDefinitions {
 
-	@Autowired
-	private TestRestTemplate template;
+    @Autowired
+    private TestRestTemplate template;
 
-	ResponseEntity<String> response;
+    ResponseEntity<String> response;
 
-	@When("the client calls {string}")
-	public void theClientCallsVersion(String call) {
+    @When("the client calls {string}")
+    public void theClientCallsVersion(String call) {
+        response = template.getForEntity(call, String.class);
+    }
 
-		response = template.getForEntity(call, String.class);
-	}
+    @Then("the client receives status code of (\\d+)$")
+    public void theClientReceivesStatusCode(int code) {
+        assertEquals(response.getStatusCode().value(), code);
+    }
 
-	@Then("the client receives status code of (\\d+)$")
-	public void theClientReceivesStatusCode(int code) {
-		assertEquals(response.getStatusCode().value(), code);
-	}
-
-	@And("the client receives server version (.+)$")
-	public void theClientReceivesServerVersion(String version) {
-		assertEquals(response.getBody(), version);
-	}
+    @And("the client receives server version (.+)$")
+    public void theClientReceivesServerVersion(String version) {
+        assertEquals(response.getBody(), version);
+    }
 
 }

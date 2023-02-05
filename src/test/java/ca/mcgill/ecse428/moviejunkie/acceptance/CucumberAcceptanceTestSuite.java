@@ -9,10 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @Suite
 @IncludeEngines("cucumber")
+@CucumberContextConfiguration
 @SelectClasspathResource("features")
-@CucumberContextConfiguration()
-@SpringBootTest(classes = MovieJunkieApplication.class,
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class MovieJunkieIntegrationTestSuite {
-
+@SpringBootTest(classes = MovieJunkieApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class CucumberAcceptanceTestSuite {
 }
