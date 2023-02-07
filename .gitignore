@@ -2,6 +2,7 @@ src/main/resources/application.properties
 HELP.md
 build/
 bin/
+target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 .idea
