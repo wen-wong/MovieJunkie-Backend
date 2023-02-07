@@ -8,8 +8,6 @@ Please have the following software:
 - Gradle 7
 - Postgres 15
 
-**NOTE: If you do not have maven installed locally, you may use `./mvwn` instead of `mvn`**
-
 1. Clone the repository
 ```
 git clone https://github.com/wen-wong/MovieJunkie-Backend.git
@@ -39,7 +37,7 @@ spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect    # Driver
 ```
 gradle build
 ```
-5Run all acceptance test
+5. Run all acceptance test
 ```
 gradle test
 ```
@@ -91,5 +89,6 @@ Below is a summarized version of the repository's project structure:
                 |_ MovieJunkieApplicationTests.java
         |_ resources
             |_ features                                 # 8
-|_ pom.xml
+|_ build.gradle
+|_ settings.gradle
 ```
