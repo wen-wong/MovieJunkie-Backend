@@ -1,7 +1,5 @@
 package ca.mcgill.ecse428.moviejunkie.dto;
 
-import ca.mcgill.ecse428.moviejunkie.model.Account;
-
 public class AccountDTO {
   private int accountId;
   private String firstName;
@@ -14,6 +12,14 @@ public class AccountDTO {
 
   public AccountDTO(int accountId, String firstName, String lastName, String username, String password, String email) {
     this.accountId = accountId;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.username = username;
+    this.password = password;
+    this.email = email;
+  }
+
+  public AccountDTO(String firstName, String lastName, String username, String password, String email) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.username = username;
