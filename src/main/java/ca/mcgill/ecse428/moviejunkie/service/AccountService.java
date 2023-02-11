@@ -39,4 +39,14 @@ public class AccountService {
 
     return account;
   }
+  @Transactional
+  public Account getAccount(String username) throws AccountException {
+      Account account=accountRepository.findAccountByUsername(username);
+      if(account==null){
+        throw new AccountException("Account not found");
+      }
+      else{
+        return account;
+      }
+  }
 }
