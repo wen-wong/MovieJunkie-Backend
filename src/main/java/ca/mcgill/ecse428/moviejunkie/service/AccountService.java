@@ -49,4 +49,18 @@ public class AccountService {
         return account;
       }
   }
+
+  @Transactional
+  public Account editAccount(String username, String password, String email) throws AccountException {
+    Account account = accountRepository.findAccountByUsername(username);
+    if(account == null){
+      throw new AccountException("Account not found");
+    }
+    else{
+      account.setPassword(password);
+      account.setEmail(email);
+      account = accountRepository.save(account);
+    }
+    return account;
+  }
 }

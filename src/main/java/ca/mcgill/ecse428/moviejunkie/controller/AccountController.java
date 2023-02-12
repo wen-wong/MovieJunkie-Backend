@@ -33,6 +33,13 @@ public class AccountController
         return convertToDTO(account);
     }
 
+    @PostMapping(value = {"/account/edit", "/account/edit/"})
+    @ResponseBody
+    public AccountDTO editAccount(@RequestBody AccountDTO request) throws AccountException {
+        Account account = service.editAccount(request.getUsername(), request.getPassword(), request.getEmail());
+        return convertToDTO(account);
+    }
+
     private AccountDTO convertToDTO(Account account) {
         if (account == null) {
             throw new IllegalArgumentException("Cannot create account");
