@@ -38,7 +38,7 @@ spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect    # Driver
 ```
 **NOTE: Fill in all `<>` in the code above AND remove all the comments starting with `#` explaining each line AND ALL EXTRA SPACES AFTER EACH LINE**
 
-4. Build the maven project and install the project files
+4. Build the Gradle project and install the project files
 ```
 gradle build
 ```
