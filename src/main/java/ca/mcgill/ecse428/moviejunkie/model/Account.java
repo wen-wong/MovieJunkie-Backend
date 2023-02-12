@@ -8,10 +8,11 @@ import jakarta.persistence.Id;
 @Entity
 public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
+
     private int accountId;
     private String firstName;
     private String lastName;
+    @Id
     private String username;
     private String password;
     private String email;
