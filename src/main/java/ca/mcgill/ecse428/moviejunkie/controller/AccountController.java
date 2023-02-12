@@ -26,7 +26,7 @@ public class AccountController
 
     @PostMapping(value= {"/account/{firstName}/{lastName}/{username}/{password}/{email}","/account/{id}/{firstName}/{lastName}/{username}/{password}/{email}/"})
     @ResponseBody
-    public AccountDTO createAddress (@PathVariable("firstName") String firstName,
+    public AccountDTO createAccount (@PathVariable("firstName") String firstName,
                                     @PathVariable("lastName") String lastName, @PathVariable("username") String username,
                                     @PathVariable("password") String password,@PathVariable("email") String email) throws Exception {
         Account account = service.createAccount(firstName, lastName, username,password,email);
