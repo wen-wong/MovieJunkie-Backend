@@ -40,6 +40,13 @@ public class AccountController
         return convertToDTO(account);
     }
 
+    @PostMapping(value = {"/account/delete", "/account/delete/"})
+    @ResponseBody
+    public void deleteAccount(@RequestBody AccountDTO request) throws AccountException {
+        service.deleteAccount(request.getUsername(), request.getPassword());
+
+    }
+
     private AccountDTO convertToDTO(Account account) {
         if (account == null) {
             throw new IllegalArgumentException("Cannot create account");
