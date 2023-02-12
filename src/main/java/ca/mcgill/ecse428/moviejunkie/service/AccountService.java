@@ -33,6 +33,10 @@ public class AccountService {
       throw new AccountException("email must not be null");
     }
 
+    if (accountRepository.findAccountByUsername(username) != null) {
+      throw new AccountException("account with username " + username + " already exists");
+    }
+
     Account account = new Account(firstName, lastName, username, password, email);
 
     accountRepository.save(account);
