@@ -38,7 +38,7 @@ public class AccountController
             throw new IllegalArgumentException("Cannot create account");
         }
         AccountDTO addressDTO = new AccountDTO();
-        addressDTO.setAccountId(account.getAccountId());
+//        addressDTO.setAccountId(account.getAccountId());
         addressDTO.setFirstName(account.getFirstName());
         addressDTO.setLastName(account.getLastName());
         addressDTO.setUsername(account.getUsername());

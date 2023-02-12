@@ -32,15 +32,14 @@ public class AccountRepositoryTests {
 
         john = accountRepository.save(john);
 
-        int id =john.getAccountId();
+        String usernameID =john.getUsername();
 
         john = null;
 
         //read in from db to ensure it has been persisted
-        john = accountRepository.findAccountByAccountID(id);
+        john = accountRepository.findAccountByUsername(usernameID);
 
         assertNotNull(john);
-        assertEquals(id, john.getAccountId());
         assertEquals(firstName, john.getFirstName());
         assertEquals(lastName, john.getLastName());
         assertEquals(username, john.getUsername());
