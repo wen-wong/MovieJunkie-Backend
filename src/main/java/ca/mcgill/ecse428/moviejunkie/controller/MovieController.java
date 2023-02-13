@@ -16,16 +16,8 @@ public class MovieController {
     @ResponseBody
     public MovieDTO createMovie(@PathVariable("id") int id, @RequestParam(value = "name", required = false) String name){
         Movie movie = movieService.createMovie(id, name);
-        return convertToDTO(movie);
+        return MovieDTO.convertToDTO(movie);
     }
 
-    private MovieDTO convertToDTO(Movie movie){
-        if (movie == null) {
-            throw new IllegalArgumentException("Movie is null");
-        }
-        MovieDTO dto = new MovieDTO();
-        dto.setId(movie.getId());
-        dto.setName(movie.getName());
-        return dto;
-    }
+
 }
