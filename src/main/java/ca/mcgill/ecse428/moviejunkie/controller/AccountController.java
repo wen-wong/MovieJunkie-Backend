@@ -24,7 +24,7 @@ public class AccountController
         return convertToDTO(account);
     }
 
-    @PostMapping(value= {"/account/{firstName}/{lastName}/{username}/{password}/{email}","/account/{id}/{firstName}/{lastName}/{username}/{password}/{email}/"})
+    @PostMapping(value= {"/account/{firstName}/{lastName}/{username}/{password}/{email}","/account/{firstName}/{lastName}/{username}/{password}/{email}/"})
     @ResponseBody
     public AccountDTO createAccount (@PathVariable("firstName") String firstName,
                                     @PathVariable("lastName") String lastName, @PathVariable("username") String username,
@@ -32,6 +32,14 @@ public class AccountController
         Account account = service.createAccount(firstName, lastName, username,password,email);
         return convertToDTO(account);
     }
+    @PostMapping(value= {"account2/{name}/{email}/{password}/","/account2/{name}/{email}/{password}/"})
+    @ResponseBody
+    public AccountDTO createAccountByEmail (@PathVariable("lastName") String name,@PathVariable("email") String email,
+                                     @PathVariable("password") String password) throws Exception {
+        Account account = service.createAccount2(name,password,email);
+        return convertToDTO(account);
+    }
+
 
     private AccountDTO convertToDTO(Account account) {
         if (account == null) {
