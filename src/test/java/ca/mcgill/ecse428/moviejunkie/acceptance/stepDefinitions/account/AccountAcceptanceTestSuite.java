@@ -1,4 +1,4 @@
-package ca.mcgill.ecse428.moviejunkie.acceptance;
+package ca.mcgill.ecse428.moviejunkie.acceptance.stepDefinitions.account;
 
 import ca.mcgill.ecse428.moviejunkie.MovieJunkieApplication;
 import io.cucumber.spring.CucumberContextConfiguration;
@@ -9,8 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @Suite
 @IncludeEngines("cucumber")
-@CucumberContextConfiguration
-@SelectClasspathResource("features/version.feature")
+@SelectClasspathResource("features/account/")
 @SpringBootTest(classes = MovieJunkieApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class CucumberAcceptanceTestSuite {
+public class AccountAcceptanceTestSuite {
 }

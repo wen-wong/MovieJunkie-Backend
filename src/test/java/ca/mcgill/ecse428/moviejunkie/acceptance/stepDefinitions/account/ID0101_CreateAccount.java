@@ -1,4 +1,4 @@
-package ca.mcgill.ecse428.moviejunkie.acceptance.stepDefinitions;
+package ca.mcgill.ecse428.moviejunkie.acceptance.stepDefinitions.account;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
