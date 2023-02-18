@@ -1,8 +1,4 @@
 package ca.mcgill.ecse428.moviejunkie.dto;
-
-import ca.mcgill.ecse428.moviejunkie.model.Movie;
-
-import java.util.Collections;
 import java.util.List;
 
 public class TagDTO {

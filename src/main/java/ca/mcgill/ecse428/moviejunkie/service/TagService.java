@@ -48,7 +48,7 @@ public class TagService {
     }
     @Transactional
     public List<Movie> getMovieListByTag(String text) {
-        List<Movie> movieList = tagRepository.findAllMoviesByTagText(text);
+        List<Movie> movieList  = tagRepository.findTagByText(text).getMovies();
         return movieList;
     }
     //TODO getting a tag by movie title ??

@@ -9,7 +9,6 @@ import java.util.List;
 
 @Entity
 public class Tag {
-    @Id
     private String text;
     private List<Movie> movies;
 
@@ -22,6 +21,7 @@ public class Tag {
         this.movies = Collections.<Movie>emptyList();
     }
     public Tag() {}
+    @Id
     public String getText() {
         return text;
     }
