@@ -17,12 +17,19 @@ public class Account {
     private String password;
     private String email;
 
+    private String name;
+
     public Account(){}
 
     public Account(String firstName, String lastName, String username, String password, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+    public Account(String name, String email, String password) {
+        this.name=name;
         this.password = password;
         this.email = email;
     }
