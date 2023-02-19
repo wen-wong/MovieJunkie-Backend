@@ -23,7 +23,7 @@ public class AccountController
         return convertToDTO(account);
     }
 
-    @PostMapping(value= {"account/{username}/{email}/{password}/","/account/{username}/{email}/{password}/"})
+    @PostMapping(value= {"account/{username}/{email}/{password}","/account/{username}/{email}/{password}/"})
     @ResponseBody
     public AccountDTO createAccount (@PathVariable("username") String username,@PathVariable("email") String email,
                                      @PathVariable("password") String password) throws Exception {
