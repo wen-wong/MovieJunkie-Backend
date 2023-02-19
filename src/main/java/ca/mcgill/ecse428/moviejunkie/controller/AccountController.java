@@ -24,19 +24,11 @@ public class AccountController
         return convertToDTO(account);
     }
 
-    @PostMapping(value= {"/account/{firstName}/{lastName}/{username}/{password}/{email}","/account/{firstName}/{lastName}/{username}/{password}/{email}/"})
+    @PostMapping(value= {"account2/{username}/{email}/{password}/","/account2/{username}/{email}/{password}/"})
     @ResponseBody
-    public AccountDTO createAccount(@PathVariable("firstName") String firstName,
-                                    @PathVariable("lastName") String lastName, @PathVariable("username") String username,
-                                    @PathVariable("password") String password,@PathVariable("email") String email) throws Exception {
-        Account account = service.createAccount(firstName, lastName, username,password,email);
-        return convertToDTO(account);
-    }
-    @PostMapping(value= {"account2/{name}/{email}/{password}/","/account2/{name}/{email}/{password}/"})
-    @ResponseBody
-    public AccountDTO createAccountByEmail (@PathVariable("lastName") String name,@PathVariable("email") String email,
+    public AccountDTO createAccount (@PathVariable("username") String username,@PathVariable("email") String email,
                                      @PathVariable("password") String password) throws Exception {
-        Account account = service.createAccount2(name,password,email);
+        Account account = service.createAccount(username,password,email);
         return convertToDTO(account);
     }
 
@@ -61,8 +53,6 @@ public class AccountController
         }
         AccountDTO addressDTO = new AccountDTO();
 //        addressDTO.setAccountId(account.getAccountId());
-        addressDTO.setFirstName(account.getFirstName());
-        addressDTO.setLastName(account.getLastName());
         addressDTO.setUsername(account.getUsername());
         addressDTO.setEmail(account.getEmail());
         addressDTO.setPassword(account.getPassword());

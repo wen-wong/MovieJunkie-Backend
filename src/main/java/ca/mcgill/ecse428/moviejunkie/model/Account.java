@@ -9,45 +9,17 @@ import jakarta.persistence.Id;
 public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-//    private int accountId;
-    private String firstName;
-    private String lastName;
     @Id
     private String username;
     private String password;
     private String email;
 
-    private String name;
-
     public Account(){}
 
-    public Account(String firstName, String lastName, String username, String password, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Account(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-    }
-    public Account(String name, String email, String password) {
-        this.name=name;
-        this.password = password;
-        this.email = email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getUsername() {

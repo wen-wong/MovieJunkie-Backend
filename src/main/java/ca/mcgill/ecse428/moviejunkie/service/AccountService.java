@@ -14,40 +14,10 @@ public class AccountService {
   AccountRepository accountRepository;
 
   @Transactional
-  public Account createAccount(String firstName, String lastName, String username, String password, String email)
-      throws Exception {
-
-    if (firstName == null) {
-      throw new AccountException("firstName must not be null");
-    }
-    else if (lastName == null) {
-      throw new AccountException("lastName must not be null");
-    }
-    else if (username == null) {
-      throw new AccountException("username must not be null");
-    }
-    else if (password == null) {
-      throw new AccountException("password must not be null");
-    }
-    else if (email == null) {
-      throw new AccountException("email must not be null");
-    }
-
-    if (accountRepository.findAccountByUsername(username) != null) {
-      throw new AccountException("account with username " + username + " already exists");
-    }
-
-    Account account = new Account(firstName, lastName, username, password, email);
-
-    accountRepository.save(account);
-
-    return account;
-  }
-  @Transactional
-  public Account createAccount2(String name,String email, String password)
+  public Account createAccount(String username,String email, String password)
           throws Exception {
 
-    if (name == null) {
+    if (username == null) {
       throw new AccountException("firstName must not be null");
     }
     else if (password == null) {
@@ -57,7 +27,7 @@ public class AccountService {
       throw new AccountException("email must not be null");
     }
 
-    Account account = new Account(name, password, email);
+    Account account = new Account(username, password, email);
 
     accountRepository.save(account);
 
@@ -73,7 +43,6 @@ public class AccountService {
         return account;
       }
   }
-<<<<<<< HEAD
 
   @Transactional
   public void deleteAccount(String username, String password) throws AccountException {
