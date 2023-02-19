@@ -8,22 +8,24 @@ Please have the following software:
 - Gradle 7
 - Postgres 15
 
-**NOTE: If you do not have maven installed locally, you may use `./mvwn` instead of `mvn`**
-
 1. Clone the repository
 ```
 git clone https://github.com/wen-wong/MovieJunkie-Backend.git
 ```
+
 2. Create a folder under `src/main/`
 ```
 mkdir ./src/main/resources
 ```
+
 3. Create a file called `application.properties` and paste the following code
 ```
 cd ./src/main/resources
 touch application.properties
 ```
+
 ***Inside of application.properties***
+
 ```
 server.port=${PORT:1234}                                                # Port Number to connect the local backend
 spring.datasource.url=jdbc:postgresql://localhost:<DB-PORT>/<DB-NAME>   # URL to the database, e.g., localhost:8080/movie-junkie
@@ -34,12 +36,13 @@ spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect    # Driver to allows the project to understand Postgres
 ```
-**NOTE: Fill in all `<>` in the code above AND remove all the comments starting with `#` explaining each line**
-4. Build the maven project and install the project files
+**NOTE: Fill in all `<>` in the code above AND remove all the comments starting with `#` explaining each line AND ALL EXTRA SPACES AFTER EACH LINE**
+
+4. Build the Gradle project and install the project files
 ```
 gradle build
 ```
-5Run all acceptance test
+5. Run all acceptance test
 ```
 gradle test
 ```
@@ -91,5 +94,6 @@ Below is a summarized version of the repository's project structure:
                 |_ MovieJunkieApplicationTests.java
         |_ resources
             |_ features                                 # 8
-|_ pom.xml
+|_ build.gradle
+|_ settings.gradle
 ```
