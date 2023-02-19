@@ -1,5 +1,6 @@
 package ca.mcgill.ecse428.moviejunkie.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -8,13 +9,14 @@ import org.springframework.web.client.RestTemplate;
 public class SearchController {
 
     private final String TMDB_URL = "https://api.themoviedb.org/3/";
-    private final String API_KEY = "?api_key=f4a943efca00a3cd96ac56ff8ad1ea3c";
+    @Value("${tmdb.apikey}")
+    private String API_KEY;
 
     @GetMapping(value={"/discover/{id}", "/discover/{id}/"})
     public String searchDiscoverMovies(@PathVariable("id") int id) {
         try {
             RestTemplate restTemplate = new RestTemplate();
-            String uri = TMDB_URL + "discover/movie" + API_KEY + "&page=" + id;
+            String uri = TMDB_URL + "discover/movie?api_key=" + API_KEY + "&page=" + id;
             return restTemplate.getForObject(uri, String.class);
         } catch (Error error) {
             return error.getMessage();
@@ -25,7 +27,7 @@ public class SearchController {
     public String searchQueryMovies(@RequestParam String query) {
         try {
             RestTemplate restTemplate = new RestTemplate();
-            String uri = TMDB_URL + "search/movie" + API_KEY + "&query=" + query;
+            String uri = TMDB_URL + "search/movie?api_key=" + API_KEY + "&query=" + query;
             return restTemplate.getForObject(uri, String.class);
         } catch (Error error) {
             return error.getMessage();
