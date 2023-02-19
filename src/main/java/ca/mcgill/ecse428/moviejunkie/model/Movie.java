@@ -1,10 +1,7 @@
 package ca.mcgill.ecse428.moviejunkie.model;
 
-import ca.mcgill.ecse428.moviejunkie.dto.HashtagDTO;
 import jakarta.persistence.*;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,13 +20,11 @@ public class Movie {
         this.name = name;
         this.hashtags = hashtags;
     }
-
     public Movie(int id, String name){
         this.id = id;
         this.name = name;
         this.hashtags = new HashSet<Hashtag>();
     }
-
     public Movie() {}
     public int getId() {
         return id;

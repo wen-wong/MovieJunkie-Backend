@@ -16,8 +16,6 @@ import java.util.Set;
 public class HashtagController {
     @Autowired
     private HashtagService service;
-    @Autowired
-    private MovieService movieService;
 
     @GetMapping(value = {"/hashtag/{text}", "/hashtag/{text}/"})
     public HashtagDTO getHashtag(@PathVariable("text") String text) {
