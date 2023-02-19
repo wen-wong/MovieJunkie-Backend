@@ -18,7 +18,7 @@ public class AccountService {
           throws Exception {
 
     if (username == null) {
-      throw new AccountException("firstName must not be null");
+      throw new AccountException("username must not be null");
     }
     else if (password == null) {
       throw new AccountException("password must not be null");
@@ -26,8 +26,11 @@ public class AccountService {
     else if (email == null) {
       throw new AccountException("email must not be null");
     }
-
-    Account account = new Account(username, password, email);
+    Account account=accountRepository.findAccountByUsername(username);
+    if(account !=null){
+      throw new AccountException("username already exists");
+    }
+    account = new Account(username, password, email);
 
     accountRepository.save(account);
 
