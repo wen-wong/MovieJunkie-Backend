@@ -7,8 +7,6 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Account {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Id
     private String username;
     private String password;
