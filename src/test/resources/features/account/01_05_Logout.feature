@@ -8,7 +8,7 @@ Feature: Log out
       | kreeves    | Keanu     | Reeves   | keanureeves@email.com   | 01MATRIX01 |
       | bradcooper | Bradley   | Cooper   | bradleycooper@email.com | StarIsBorn |
 
-  Scenario: Successfully deleting an information
+  Scenario: Successfully logging out
     Given the user "kreeves" is logged in
     When the user attempts to log out
     Then user "kreeves" shall not be logged in

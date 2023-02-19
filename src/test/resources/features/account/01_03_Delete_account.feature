@@ -8,7 +8,7 @@ Feature: Delete user account
       | kreeves    | Keanu     | Reeves   | keanureeves@email.com   | 01MATRIX01 |
       | bradcooper | Bradley   | Cooper   | bradleycooper@email.com | StarIsBorn |
 
-  Scenario: Successfully deleting an information
+  Scenario: Successfully deleting an account
     When the user "kreeves" attempts to delete their account
     Then there shall be 1 accounts in the system
     Then there shall not exist an account with the username "kreeves"

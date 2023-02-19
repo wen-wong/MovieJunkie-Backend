@@ -8,7 +8,7 @@ Feature: Create a User account
       | robsab   | Robert    | Sabourin | robsab@email.com   | ECSE428   |
       | bradpitt | Brad      | Pitt     | bradpitt@email.com | FightClub |
 
-  Scenario Outline: Successfully creating an account with username "<username>"
+  Scenario Outline: Successfully creating an account
     When an account is created with the following information: "<username>", "<firstName>", "<lastName>", "<email>", and "<password>"
     Then there shall be 3 accounts in the system
     And there shall exist an account with the username "<username>"
