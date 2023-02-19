@@ -12,12 +12,14 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
+    @GetMapping(value={"/movie/{id}", "/movie/{id}/"})
+    public MovieDTO getMovie(@PathVariable("id") int id) {
+        return MovieDTO.convertToDTO(movieService.getMovie(id));
+    }
     @PostMapping(value={"/movie/{id}","/movie/{id}/"})
     @ResponseBody
     public MovieDTO createMovie(@PathVariable("id") int id, @RequestParam(value = "name", required = false) String name){
         Movie movie = movieService.createMovie(id, name);
         return MovieDTO.convertToDTO(movie);
     }
-
-
 }

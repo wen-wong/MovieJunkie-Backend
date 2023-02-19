@@ -12,7 +12,7 @@ public class CustomErrorController implements ErrorController {
 	@RequestMapping("/error")
 	@ResponseBody
 	String error(HttpServletRequest request) {
-		return "Error occurred";
+		return "Error occured";
 	}
 
 }
