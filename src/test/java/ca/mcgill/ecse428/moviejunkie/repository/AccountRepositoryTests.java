@@ -22,13 +22,11 @@ public class AccountRepositoryTests {
 
     @Test
     public void testPersistAndLoadAccount() {
-        String firstName = "John";
-        String lastName = "Doe";
         String username = "John123";
         String password = "password";
         String email = "john@mail.ca";
 
-        Account john = new Account(firstName, lastName, username, password, email);
+        Account john = new Account(username, password, email);
 
         john = accountRepository.save(john);
 
@@ -40,8 +38,6 @@ public class AccountRepositoryTests {
         john = accountRepository.findAccountByUsername(usernameID);
 
         assertNotNull(john);
-        assertEquals(firstName, john.getFirstName());
-        assertEquals(lastName, john.getLastName());
         assertEquals(username, john.getUsername());
         assertEquals(password, john.getPassword());
         assertEquals(email, john.getEmail());
