@@ -2,6 +2,8 @@ Feature: View movie information
   As a user, I would like to see detailed information about a movie so that I can make
   sure I am looking at the right movie.
 
+  # Data in the test cases is taken from the IMDB website
+
   Background:
     Given the following movies exist in the system:
       | Avatar                                |
