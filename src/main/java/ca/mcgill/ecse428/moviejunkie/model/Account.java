@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private int accountId;
+//    private int accountId;
     private String firstName;
     private String lastName;
     @Id
@@ -17,16 +17,9 @@ public class Account {
     private String password;
     private String email;
 
-    public Account(){}
+    private String name;
 
-    public Account(int accountId, String firstName, String lastName, String username, String password, String email) {
-        this.accountId = accountId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
+    public Account(){}
 
     public Account(String firstName, String lastName, String username, String password, String email) {
         this.firstName = firstName;
@@ -35,13 +28,10 @@ public class Account {
         this.password = password;
         this.email = email;
     }
-
-    public int getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
+    public Account(String name, String email, String password) {
+        this.name=name;
+        this.password = password;
+        this.email = email;
     }
 
     public String getFirstName() {
