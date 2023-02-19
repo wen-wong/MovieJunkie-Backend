@@ -53,4 +53,35 @@ public class AccountService {
         return account;
       }
   }
+
+  @Transactional
+  public void deleteAccount(String username, String password) throws AccountException {
+      Account account=accountRepository.findAccountByUsername(username);
+      String pass = account.getPassword();
+
+      if(account==null){
+        throw new AccountException("Account not found");
+      } else if (password == null){
+        throw new AccountException("Password must not be null");
+      } else if (!password.equals(pass)){
+        throw new AccountException("Sorry, the password you have entered is incorrect");
+      } else {
+        accountRepository.delete(account);
+      }
+
+  }
+
+  @Transactional
+  public Account editAccount(String username, String password, String email) throws AccountException {
+    Account account = accountRepository.findAccountByUsername(username);
+    if(account == null){
+      throw new AccountException("Account not found");
+    }
+    else{
+      account.setPassword(password);
+      account.setEmail(email);
+      account = accountRepository.save(account);
+    }
+    return account;
+  }
 }

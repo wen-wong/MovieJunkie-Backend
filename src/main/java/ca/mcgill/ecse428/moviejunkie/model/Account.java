@@ -8,24 +8,16 @@ import jakarta.persistence.Id;
 @Entity
 public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    private int accountId;
+
+//    private int accountId;
     private String firstName;
     private String lastName;
+    @Id
     private String username;
     private String password;
     private String email;
 
     public Account(){}
-
-    public Account(int accountId, String firstName, String lastName, String username, String password, String email) {
-        this.accountId = accountId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
 
     public Account(String firstName, String lastName, String username, String password, String email) {
         this.firstName = firstName;
@@ -33,14 +25,6 @@ public class Account {
         this.username = username;
         this.password = password;
         this.email = email;
-    }
-
-    public int getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
     }
 
     public String getFirstName() {

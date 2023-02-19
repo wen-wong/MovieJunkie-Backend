@@ -1,7 +1,7 @@
 package ca.mcgill.ecse428.moviejunkie.dto;
 
 public class AccountDTO {
-  private int accountId;
+//  private int accountId;
   private String firstName;
   private String lastName;
   private String username;
@@ -9,15 +9,6 @@ public class AccountDTO {
   private String email;
 
   public AccountDTO(){}
-
-  public AccountDTO(int accountId, String firstName, String lastName, String username, String password, String email) {
-    this.accountId = accountId;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.username = username;
-    this.password = password;
-    this.email = email;
-  }
 
   public AccountDTO(String firstName, String lastName, String username, String password, String email) {
     this.firstName = firstName;
@@ -27,13 +18,13 @@ public class AccountDTO {
     this.email = email;
   }
 
-  public int getAccountId() {
-    return accountId;
-  }
-
-  public void setAccountId(int accountId) {
-    this.accountId = accountId;
-  }
+//  public int getAccountId() {
+//    return accountId;
+//  }
+//
+//  public void setAccountId(int accountId) {
+//    this.accountId = accountId;
+//  }
 
   public String getFirstName() {
     return firstName;

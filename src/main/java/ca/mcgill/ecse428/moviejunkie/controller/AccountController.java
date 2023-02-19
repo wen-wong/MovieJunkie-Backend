@@ -26,11 +26,25 @@ public class AccountController
 
     @PostMapping(value= {"/account/{firstName}/{lastName}/{username}/{password}/{email}","/account/{id}/{firstName}/{lastName}/{username}/{password}/{email}/"})
     @ResponseBody
-    public AccountDTO createAddress (@PathVariable("firstName") String firstName,
+    public AccountDTO createAccount (@PathVariable("firstName") String firstName,
                                     @PathVariable("lastName") String lastName, @PathVariable("username") String username,
                                     @PathVariable("password") String password,@PathVariable("email") String email) throws Exception {
         Account account = service.createAccount(firstName, lastName, username,password,email);
         return convertToDTO(account);
+    }
+
+    @PostMapping(value = {"/account/edit", "/account/edit/"})
+    @ResponseBody
+    public AccountDTO editAccount(@RequestBody AccountDTO request) throws AccountException {
+        Account account = service.editAccount(request.getUsername(), request.getPassword(), request.getEmail());
+        return convertToDTO(account);
+    }
+
+    @PostMapping(value = {"/account/delete", "/account/delete/"})
+    @ResponseBody
+    public void deleteAccount(@RequestBody AccountDTO request) throws AccountException {
+        service.deleteAccount(request.getUsername(), request.getPassword());
+
     }
 
     private AccountDTO convertToDTO(Account account) {
@@ -38,7 +52,7 @@ public class AccountController
             throw new IllegalArgumentException("Cannot create account");
         }
         AccountDTO addressDTO = new AccountDTO();
-        addressDTO.setAccountId(account.getAccountId());
+//        addressDTO.setAccountId(account.getAccountId());
         addressDTO.setFirstName(account.getFirstName());
         addressDTO.setLastName(account.getLastName());
         addressDTO.setUsername(account.getUsername());
