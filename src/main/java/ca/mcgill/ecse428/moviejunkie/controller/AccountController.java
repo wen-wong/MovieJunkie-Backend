@@ -17,21 +17,19 @@ public class AccountController
     @Autowired
     private AccountService service;
 
-
     @GetMapping(value = {"/account/{username}", "/account/{username}/"})
     public AccountDTO getAccount(@PathVariable("username") String username) throws IllegalArgumentException, AccountException {
         Account account = service.getAccount(username);
         return convertToDTO(account);
     }
 
-    @PostMapping(value= {"account2/{username}/{email}/{password}/","/account2/{username}/{email}/{password}/"})
+    @PostMapping(value= {"account/{username}/{email}/{password}/","/account/{username}/{email}/{password}/"})
     @ResponseBody
     public AccountDTO createAccount (@PathVariable("username") String username,@PathVariable("email") String email,
                                      @PathVariable("password") String password) throws Exception {
         Account account = service.createAccount(username,password,email);
         return convertToDTO(account);
     }
-
 
     @PostMapping(value = {"/account/edit", "/account/edit/"})
     @ResponseBody
