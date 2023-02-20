@@ -16,6 +16,10 @@ public class HashtagController {
     @Autowired
     private HashtagService service;
 
+    @GetMapping(value = {"/hashtags", "/hashtags/"})
+    public Set<HashtagDTO> getAllHashtags() {
+        return HashtagDTO.convertToDTO(service.getAllHashtags());
+    }
     @GetMapping(value = {"/hashtag/{text}", "/hashtag/{text}/"})
     public HashtagDTO getHashtag(@PathVariable("text") String text) {
         Hashtag hashtag = service.getHashtag(text);

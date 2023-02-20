@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class HashtagService {
@@ -48,6 +47,12 @@ public class HashtagService {
         } else {
             return hashtag;
         }
+    }
+    @Transactional
+    public Set<Hashtag> getAllHashtags() {
+        Set<Hashtag> allHashtags = new HashSet<Hashtag>();
+        allHashtags.addAll(hashtagRepository.findAll());
+        return allHashtags;
     }
     @Transactional
     public Set<Movie> getMovieListByHashtag(String text) {
