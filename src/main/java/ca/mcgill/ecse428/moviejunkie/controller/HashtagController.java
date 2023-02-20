@@ -5,7 +5,6 @@ import ca.mcgill.ecse428.moviejunkie.dto.HashtagDTO;
 import ca.mcgill.ecse428.moviejunkie.model.Hashtag;
 import ca.mcgill.ecse428.moviejunkie.model.Movie;
 import ca.mcgill.ecse428.moviejunkie.service.HashtagService;
-import ca.mcgill.ecse428.moviejunkie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
