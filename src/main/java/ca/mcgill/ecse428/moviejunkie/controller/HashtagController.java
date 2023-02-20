@@ -25,10 +25,9 @@ public class HashtagController {
         Hashtag hashtag = service.getHashtag(text);
         return HashtagDTO.convertToDTO(hashtag);
     }
-    @GetMapping(value = {"/hashtag/{text}/movies", "/hashtag/{text}/movies/"})
-    public Set<MovieDTO> getMoviesByHashtag(@PathVariable("text") String text) {
-        Set<MovieDTO> movieDTOList = MovieDTO.convertToDTO(service.getMovieListByHashtag(text));
-        return movieDTOList;
+    @GetMapping(value = {"/movie/search/hashtags", "/movie/search/hashtags/"})
+    public Set<MovieDTO> getMoviesByHashtagList(@RequestParam("hashtags") String[] hashtags) {
+        return MovieDTO.convertToDTO(service.getMovieListByHashtagList(hashtags));
     }
     @PostMapping(value = {"/hashtag/create", "/hashtag/create/"})
     public HashtagDTO createHashtag(@RequestParam("text") String text) {

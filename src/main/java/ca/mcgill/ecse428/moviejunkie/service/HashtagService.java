@@ -50,13 +50,16 @@ public class HashtagService {
     }
     @Transactional
     public Set<Hashtag> getAllHashtags() {
-        Set<Hashtag> allHashtags = new HashSet<Hashtag>();
+        Set<Hashtag> allHashtags = new HashSet<>();
         allHashtags.addAll(hashtagRepository.findAll());
         return allHashtags;
     }
     @Transactional
-    public Set<Movie> getMovieListByHashtag(String text) {
-        Set<Movie> movieList  = hashtagRepository.findHashtagByText(text).getMovies();
+    public Set<Movie> getMovieListByHashtagList(String[] hashtags) {
+        Set<Movie> movieList = new HashSet<>();
+        for (String text : hashtags) {
+            movieList.addAll(hashtagRepository.findHashtagByText(text).getMovies());
+        }
         return movieList;
     }
     @Transactional
@@ -77,7 +80,7 @@ public class HashtagService {
         }
         if (hashtag == null) {
             hashtag = new Hashtag(text);
-            Set<Movie> movies = new HashSet<Movie>();
+            Set<Movie> movies = new HashSet<>();
             movies.add(movie);
             hashtag.setMovies(movies);
             hashtagRepository.save(hashtag);
