@@ -26,8 +26,13 @@ public class AccountService {
     else if (password == null || password.equals("")) {
       throw new AccountException("password must be provided");
     }
+    Account account = accountRepository.findAccountByUsername(username);
 
-    Account account = new Account(username, password, email);
+    if(account !=null){
+      throw new AccountException("username already exists");
+    }
+
+    account = new Account(username, password, email);
 
     accountRepository.save(account);
 
