@@ -25,6 +25,10 @@ public class HashtagController {
         Hashtag hashtag = service.getHashtag(text);
         return HashtagDTO.convertToDTO(hashtag);
     }
+    @GetMapping(value = {"/movie/{id}/hashtags", "/movie/{id}/hashtags/"})
+    public Set<HashtagDTO> getHashtagsByMovie(@PathVariable("id") int id) {
+        return HashtagDTO.convertToDTO(service.getHashtagsByMovieId(id));
+    }
     @GetMapping(value = {"/movie/search/hashtags", "/movie/search/hashtags/"})
     public Set<MovieDTO> getMoviesByHashtagList(@RequestParam("hashtags") String[] hashtags) {
         return MovieDTO.convertToDTO(service.getMovieListByHashtagList(hashtags));
@@ -38,5 +42,9 @@ public class HashtagController {
     public MovieDTO addHashtag(@PathVariable("id") int id, @RequestParam(value = "text") String text) {
         Movie movie = service.addHashtag(id, text);
         return MovieDTO.convertToDTO(movie);
+    }
+    @DeleteMapping(value={"/hashtag/{text}", "/hashtag/{text}/"})
+    public void deleteHashtag(@PathVariable("text") String text) {
+        service.deleteHashtag(text);
     }
 }

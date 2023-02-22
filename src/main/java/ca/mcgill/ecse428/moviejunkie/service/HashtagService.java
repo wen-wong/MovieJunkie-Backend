@@ -55,10 +55,21 @@ public class HashtagService {
         return allHashtags;
     }
     @Transactional
+    public Set<Hashtag> getHashtagsByMovieId(int id) {
+        Movie movie = movieRepository.findMovieById(id);
+        if (movie == null) {
+            throw new IllegalArgumentException("Movie does not exist.");
+        } else {
+            return movie.getHashtags();
+        }
+    }
+    @Transactional
     public Set<Movie> getMovieListByHashtagList(String[] hashtags) {
         Set<Movie> movieList = new HashSet<>();
         for (String text : hashtags) {
-            movieList.addAll(hashtagRepository.findHashtagByText(text).getMovies());
+            Hashtag ht = hashtagRepository.findHashtagByText(text);
+            if (ht == null) continue;
+            movieList.addAll(ht.getMovies());
         }
         return movieList;
     }
@@ -68,6 +79,12 @@ public class HashtagService {
         if (hashtag == null) {
             throw new IllegalArgumentException("Hashtag does not exist.");
         } else {
+            Set<Movie> movies = hashtag.getMovies();
+            for (Movie movie : movies) {
+                movie.removeHashtag(text);
+                movieRepository.save(movie);
+                hashtagRepository.save(hashtag);
+            }
             hashtagRepository.delete(hashtag);
         }
     }
