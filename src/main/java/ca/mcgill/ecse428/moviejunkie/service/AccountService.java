@@ -17,14 +17,14 @@ public class AccountService {
   public Account createAccount(String username,String email, String password)
           throws Exception {
 
-    if (username == null) {
-      throw new AccountException("firstName must not be null");
+    if (email == null || email.equals("")) {
+      throw new AccountException("email must be provided");
     }
-    else if (password == null) {
-      throw new AccountException("password must not be null");
+    else if (username == null || username.equals("")) {
+      throw new AccountException("username must be provided");
     }
-    else if (email == null) {
-      throw new AccountException("email must not be null");
+    else if (password == null || password.equals("")) {
+      throw new AccountException("password must be provided");
     }
 
     Account account = new Account(username, password, email);
