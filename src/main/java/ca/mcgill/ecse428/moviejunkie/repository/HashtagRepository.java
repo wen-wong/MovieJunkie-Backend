@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface HashtagRepository extends CrudRepository<Hashtag, String> {
     Hashtag findHashtagByText(String text);
-    List<Hashtag> findHashtagsByMoviesId(int id);
+    List<Hashtag> findAll();
 }

@@ -45,7 +45,12 @@ public class Movie {
         hashtag.getMovies().add(this);
     }
     public void removeHashtag(String text) {
-        Hashtag hashtag = this.hashtags.stream().filter(t -> t.getText() == text).findFirst().orElse(null);
+        Hashtag hashtag = null;
+        for (Hashtag ht : this.hashtags) {
+            if (text.equals(ht.getText())) {
+                hashtag = ht;
+            }
+        }
         if (hashtag != null) {
             this.hashtags.remove(hashtag);
             hashtag.getMovies().remove(this);

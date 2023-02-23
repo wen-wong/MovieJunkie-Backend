@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class HashtagService {
@@ -51,8 +49,28 @@ public class HashtagService {
         }
     }
     @Transactional
-    public Set<Movie> getMovieListByHashtag(String text) {
-        Set<Movie> movieList  = hashtagRepository.findHashtagByText(text).getMovies();
+    public Set<Hashtag> getAllHashtags() {
+        Set<Hashtag> allHashtags = new HashSet<>();
+        allHashtags.addAll(hashtagRepository.findAll());
+        return allHashtags;
+    }
+    @Transactional
+    public Set<Hashtag> getHashtagsByMovieId(int id) {
+        Movie movie = movieRepository.findMovieById(id);
+        if (movie == null) {
+            throw new IllegalArgumentException("Movie does not exist.");
+        } else {
+            return movie.getHashtags();
+        }
+    }
+    @Transactional
+    public Set<Movie> getMovieListByHashtagList(String[] hashtags) {
+        Set<Movie> movieList = new HashSet<>();
+        for (String text : hashtags) {
+            Hashtag ht = hashtagRepository.findHashtagByText(text);
+            if (ht == null) continue;
+            movieList.addAll(ht.getMovies());
+        }
         return movieList;
     }
     @Transactional
@@ -61,6 +79,12 @@ public class HashtagService {
         if (hashtag == null) {
             throw new IllegalArgumentException("Hashtag does not exist.");
         } else {
+            Set<Movie> movies = hashtag.getMovies();
+            for (Movie movie : movies) {
+                movie.removeHashtag(text);
+                movieRepository.save(movie);
+                hashtagRepository.save(hashtag);
+            }
             hashtagRepository.delete(hashtag);
         }
     }
@@ -73,7 +97,7 @@ public class HashtagService {
         }
         if (hashtag == null) {
             hashtag = new Hashtag(text);
-            Set<Movie> movies = new HashSet<Movie>();
+            Set<Movie> movies = new HashSet<>();
             movies.add(movie);
             hashtag.setMovies(movies);
             hashtagRepository.save(hashtag);
