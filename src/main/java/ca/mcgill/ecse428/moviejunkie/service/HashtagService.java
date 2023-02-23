@@ -93,7 +93,8 @@ public class HashtagService {
         Hashtag hashtag = hashtagRepository.findHashtagByText(text);
         Movie movie = movieRepository.findMovieById(id);
         if (movie == null) {
-            throw new IllegalArgumentException("Movie does not exist.");
+            movie = new Movie(id, "");
+            movieRepository.save(movie);
         }
         if (hashtag == null) {
             hashtag = new Hashtag(text);
