@@ -10,6 +10,20 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: moviejunkie
+          POSTGRES_PASSWORD: password
+          POSTGRES_USER: spring
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
     - uses: actions/checkout@v3
@@ -23,4 +37,4 @@ jobs:
     - name: Add permission
       run: chmod +x gradlew
     - name: Build test
-      run: ./gradlew check
+      run: ./gradlew clean test
