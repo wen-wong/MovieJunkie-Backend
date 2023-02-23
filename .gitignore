@@ -1,4 +1,4 @@
-src/main/resources/application.properties
+src/main/java/resources/application.properties
 HELP.md
 build/
 bin/
