@@ -35,7 +35,8 @@ public class AccountController
             return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(account);
         }
         catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage()); // TODO: Change this into a JSON serializable object.
+                                                                                       // A String cannot be serialized well int JSON
         }
     }
 
@@ -43,7 +44,7 @@ public class AccountController
     @ResponseBody
     public AccountDTO editAccount(@RequestBody AccountDTO request) throws AccountException {
         Account account = service.editAccount(request.getUsername(), request.getPassword(), request.getEmail());
-        return convertToDTO(account);
+        return convertToDTO(account); // TODO: Add error handling
     }
 
     @PostMapping(value = {"/account/delete", "/account/delete/"})

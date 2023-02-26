@@ -20,12 +20,10 @@ public class ID0102_EditAccount {
     @Then("{string}'s {string} shall be {string}")
     public void user_info_shall_be(String username, String infoType, String infoValue) {
         // Check that <username>'s <infoType> is <infoValue>
-        assertTrue(true); // TODO: Remove once method implemented
     }
 
     @Then("there shall not exist an account with the username {string}")
     public void there_shall_not_exist_an_account_with_username(String username) {
         // Check that no accounts with given username exist
-        assertTrue(true); // TODO: Remove once method implemented
     }
 }

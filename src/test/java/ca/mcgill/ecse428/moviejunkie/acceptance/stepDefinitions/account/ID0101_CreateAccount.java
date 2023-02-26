@@ -82,6 +82,6 @@ public class ID0101_CreateAccount {
         // TODO: Commented lines below fail because the error message is not sent in a proper JSON format
         // JSONObject jsonError = new JSONObject(response.getBody());
         // assertTrue(jsonError.getString("error").contains(errorMessage));
-        assertTrue(false);
+        fail("Issues with response of endpoint. Test(s) not implemented.");
     }
 }
