@@ -60,7 +60,7 @@ public class ID0101_CreateAccount {
 
     @When("an account is created with the following information: {string}, {string}, and {string}")
     public void an_account_is_created_with_the_following_info(String username, String email, String password) {
-        response = testRestTemplate.postForEntity("/account/create", new AccountDTO(username, email, password), String.class);
+        response = testRestTemplate.postForEntity("/account/create", new AccountDTO(username, password, email), String.class);
     }
 
     @Then("there shall be {int} accounts in the system")

@@ -72,10 +72,14 @@ public class AccountService {
   }
 
   @Transactional
-  public Account editAccount(String username, String password, String email) throws AccountException {
+  public Account editAccount(String username, String password, String email) throws Exception {
     Account account = accountRepository.findAccountByUsername(username);
     if (account == null) {
       throw new AccountException("Account not found");
+    }
+    Account account2 = accountRepository.findAccountByEmail(email);
+    if (account2 != null && !(account.getUsername().equals(account2.getUsername()))) {
+      throw new AccountException("Email already in use");
     } else {
       account.setPassword(password);
       account.setEmail(email);
