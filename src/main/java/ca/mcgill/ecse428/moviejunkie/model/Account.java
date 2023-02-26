@@ -14,7 +14,7 @@ public class Account {
 
     public Account(){}
 
-    public Account(String username, String password, String email) {
+    public Account(String username, String email, String password) {
         this.username = username;
         this.password = password;
         this.email = email;

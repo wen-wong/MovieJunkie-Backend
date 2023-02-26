@@ -48,13 +48,11 @@ public class ID0101_CreateAccount {
     @Given("the following accounts exist in the system:")
     public void there_are_X_accounts_in_the_system(DataTable dataTable) throws Exception {
         List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
-
         // Create accounts from rows
         for (Map<String, String> row: rows) {
             String username = row.get("username");
             String email = row.get("email");
             String password = row.get("password");
-
             accountService.createAccount(username, email, password);
         }
     }
@@ -62,6 +60,7 @@ public class ID0101_CreateAccount {
     @When("an account is created with the following information: {string}, {string}, and {string}")
     public void an_account_is_created_with_the_following_info(String username, String email, String password) {
         response = testRestTemplate.postForEntity("/account/create", new AccountDTO(username, email, password), String.class);
+
     }
 
     @Then("there shall be {int} accounts in the system")
@@ -81,7 +80,8 @@ public class ID0101_CreateAccount {
         // Check if error message is correct
         // TODO: Commented lines below fail because the error message is not sent in a proper JSON format
         // JSONObject jsonError = new JSONObject(response.getBody());
-        // assertTrue(jsonError.getString("error").contains(errorMessage));
-        fail("Issues with response of endpoint. Test(s) not implemented.");
+       // System.out.println(response.getBody());
+         assertEquals(response.getBody(),errorMessage);
+        //fail("Issues with response of endpoint. Test(s) not implemented.");
     }
 }
