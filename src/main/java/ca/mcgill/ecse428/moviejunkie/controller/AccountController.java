@@ -42,9 +42,13 @@ public class AccountController
 
     @PostMapping(value = {"/account/edit", "/account/edit/"})
     @ResponseBody
-    public AccountDTO editAccount(@RequestBody AccountDTO request) throws AccountException {
-        Account account = service.editAccount(request.getUsername(), request.getPassword(), request.getEmail());
-        return convertToDTO(account); // TODO: Add error handling
+    public ResponseEntity editAccount(@RequestBody AccountDTO request) {
+        try{
+            Account account = service.editAccount(request.getUsername(), request.getPassword(), request.getEmail());
+            return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(convertToDTO(account));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @PostMapping(value = {"/account/delete", "/account/delete/"})
