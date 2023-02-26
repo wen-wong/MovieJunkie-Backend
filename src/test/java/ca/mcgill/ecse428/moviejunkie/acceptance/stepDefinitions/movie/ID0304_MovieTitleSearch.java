@@ -1,7 +1,5 @@
 package ca.mcgill.ecse428.moviejunkie.acceptance.stepDefinitions.movie;
 
-import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.json.JSONArray;
@@ -9,15 +7,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ID0304_MovieTitleSearch {
@@ -26,14 +17,6 @@ public class ID0304_MovieTitleSearch {
     private TestRestTemplate testRestTemplate;
 
     ResponseEntity<String> response;
-
-    @Given("the following movies exist in the system:")
-    public void movies_exist_in_the_system(DataTable datatable) {
-        List<String> movieTitles = datatable.asList();
-
-        for (String movieTitle: movieTitles)
-            System.out.println(movieTitle);
-    }
 
     @When("the user searches for {string}")
     public void user_searches_for_movie(String searchString) {

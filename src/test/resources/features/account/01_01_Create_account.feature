@@ -4,27 +4,27 @@ Feature: Create a User account
 
   Background:
     Given the following accounts exist in the system:
-      | username | firstName | lastName | email              | password  |
-      | robsab   | Robert    | Sabourin | robsab@email.com   | ECSE428   |
-      | bradpitt | Brad      | Pitt     | bradpitt@email.com | FightClub |
+      | username | email              | password  |
+      | robsab   | robsab@email.com   | ECSE428   |
+      | bradpitt | bradpitt@email.com | FightClub |
 
   Scenario Outline: Successfully creating an account
-    When an account is created with the following information: "<username>", "<firstName>", "<lastName>", "<email>", and "<password>"
+    When an account is created with the following information: "<username>", "<email>", and "<password>"
     Then there shall be 3 accounts in the system
     And there shall exist an account with the username "<username>"
 
     Examples:
-      | username   | firstName | lastName | email                | password     |
-      | tomholland | Tom       | Holland  | tomholland@email.com | IamSpiderman |
-      | chrispratt | Chris     | Pratt    | chrispratt@email.com | starLORD     |
+      | username   | email                | password     |
+      | tomholland | tomholland@email.com | IamSpiderman |
+      | chrispratt | chrispratt@email.com | starLORD     |
 
 
   Scenario Outline: Attempting to create an account but the username or email is already taken
-    When an account is created with the following information: "<username>", "<firstName>", "<lastName>", "<email>", and "<password>"
+    When an account is created with the following information: "<username>", "<email>", and "<password>"
     Then there shall be 2 accounts in the system
     And the error message shall be "<error>"
 
     Examples:
-      | username    | firstName | lastName | email                    | password     | error                  |
-      | robsab      | Robert    | Sabourin | robertsabourin@email.com | ECSE428      | Username already taken |
-      | tomholland2 | Tom       | Holland  | tomholland@email.com     | IamSpiderman | Email already in use   |
+      | username    | email                    | password     | error                  |
+      | robsab      | robertsabourin@email.com | ECSE428      | Username already taken |
+      | tomholland2 | tomholland@email.com     | IamSpiderman | Email already in use   |
