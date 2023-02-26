@@ -26,5 +26,5 @@ Feature: Create a User account
 
     Examples:
       | username    | email                    | password     | error                  |
-      | robsab      | robertsabourin@email.com | ECSE428      | Username already taken |
-      | tomholland2 | tomholland@email.com     | IamSpiderman | Email already in use   |
+      | robsab      | robertsabourin@email.com | ECSE428      | username already exists |
+      | bradpitt2   | bradpitt@email.com       | FightClub    | email already in use   |

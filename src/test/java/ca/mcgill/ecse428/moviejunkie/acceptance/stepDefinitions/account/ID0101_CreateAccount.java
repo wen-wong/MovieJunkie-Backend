@@ -48,7 +48,6 @@ public class ID0101_CreateAccount {
     @Given("the following accounts exist in the system:")
     public void there_are_X_accounts_in_the_system(DataTable dataTable) throws Exception {
         List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
-
         // Create accounts from rows
         for (Map<String, String> row: rows) {
             String username = row.get("username");
@@ -79,9 +78,6 @@ public class ID0101_CreateAccount {
     @Then("the error message shall be {string}")
     public void the_error_message_shall_be(String errorMessage) throws JSONException {
         // Check if error message is correct
-        // TODO: Commented lines below fail because the error message is not sent in a proper JSON format
-        // JSONObject jsonError = new JSONObject(response.getBody());
-        // assertTrue(jsonError.getString("error").contains(errorMessage));
-        fail("Issues with response of endpoint. Test(s) not implemented.");
+         assertEquals(errorMessage, response.getBody());
     }
 }
