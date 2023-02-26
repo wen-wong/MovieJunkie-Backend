@@ -2,13 +2,8 @@ Feature: Search a movie by title
   As a user, I would like to search movies by title so that I can see information
   on that movie, its ratings, and reviews
 
-  Background:
-    Given the following movies exist in the system:
-      | Avatar                                |
-      | Harry Potter and the Sorcerer's Stone |
-
   Scenario: Looking for a specific movie
-    When the user searches for "Harry Potter and the Sorcerer's Stone"
+    When the user searches for "Harry Potter and the Philosopher's Stone"
     Then the system shall return a list of at least 1 movie(s)
     Then the list of movies shall contain "Harry Potter and the Philosopher's Stone"
 
