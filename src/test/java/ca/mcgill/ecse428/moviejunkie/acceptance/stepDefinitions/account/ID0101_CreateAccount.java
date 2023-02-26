@@ -53,6 +53,7 @@ public class ID0101_CreateAccount {
             String username = row.get("username");
             String email = row.get("email");
             String password = row.get("password");
+
             accountService.createAccount(username, email, password);
         }
     }
@@ -60,7 +61,6 @@ public class ID0101_CreateAccount {
     @When("an account is created with the following information: {string}, {string}, and {string}")
     public void an_account_is_created_with_the_following_info(String username, String email, String password) {
         response = testRestTemplate.postForEntity("/account/create", new AccountDTO(username, email, password), String.class);
-
     }
 
     @Then("there shall be {int} accounts in the system")
@@ -78,10 +78,6 @@ public class ID0101_CreateAccount {
     @Then("the error message shall be {string}")
     public void the_error_message_shall_be(String errorMessage) throws JSONException {
         // Check if error message is correct
-        // TODO: Commented lines below fail because the error message is not sent in a proper JSON format
-        // JSONObject jsonError = new JSONObject(response.getBody());
-       // System.out.println(response.getBody());
-         assertEquals(response.getBody(),errorMessage);
-        //fail("Issues with response of endpoint. Test(s) not implemented.");
+         assertEquals(errorMessage, response.getBody());
     }
 }
