@@ -25,6 +25,6 @@ Feature: Create a User account
     And the error message shall be "<error>"
 
     Examples:
-      | username    | email                    | password     | error                  |
-      | robsab      | robertsabourin@email.com | ECSE428      | username already exists |
-      | bradpitt2   | bradpitt@email.com       | FightClub    | email already in use   |
+      | username  | email                    | password  | error                   |
+      | robsab    | robertsabourin@email.com | ECSE428   | username already exists |
+      | bradpitt2 | bradpitt@email.com       | FightClub | email already in use    |
