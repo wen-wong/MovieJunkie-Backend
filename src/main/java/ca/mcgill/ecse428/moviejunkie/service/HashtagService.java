@@ -15,8 +15,10 @@ public class HashtagService {
 
     @Autowired
     HashtagRepository hashtagRepository;
+
     @Autowired
     MovieRepository movieRepository;
+
     @Transactional
     public Hashtag createHashtag(String text) {
         Hashtag hashtag = hashtagRepository.findHashtagByText(text);    //check if tag already exists
@@ -28,6 +30,7 @@ public class HashtagService {
             throw new IllegalArgumentException("Hashtag already exists.");
         }
     }
+
     @Transactional
     public Hashtag createHashtag(String text, Set<Movie> movies) {
         Hashtag hashtag = hashtagRepository.findHashtagByText(text);
@@ -39,6 +42,7 @@ public class HashtagService {
             throw new IllegalArgumentException("Hashtag already exists.");
         }
     }
+
     @Transactional
     public Hashtag getHashtag(String text) {
         Hashtag hashtag = hashtagRepository.findHashtagByText(text);
@@ -48,12 +52,14 @@ public class HashtagService {
             return hashtag;
         }
     }
+
     @Transactional
     public Set<Hashtag> getAllHashtags() {
         Set<Hashtag> allHashtags = new HashSet<>();
         allHashtags.addAll(hashtagRepository.findAll());
         return allHashtags;
     }
+
     @Transactional
     public Set<Hashtag> getHashtagsByMovieId(int id) {
         Movie movie = movieRepository.findMovieById(id);
@@ -63,6 +69,7 @@ public class HashtagService {
             return movie.getHashtags();
         }
     }
+
     @Transactional
     public Set<Movie> getMovieListByHashtagList(String[] hashtags) {
         Set<Movie> movieList = new HashSet<>();
@@ -73,6 +80,7 @@ public class HashtagService {
         }
         return movieList;
     }
+
     @Transactional
     public void deleteHashtag(String text) throws IllegalArgumentException {
         Hashtag hashtag = hashtagRepository.findHashtagByText(text);
@@ -88,6 +96,7 @@ public class HashtagService {
             hashtagRepository.delete(hashtag);
         }
     }
+
     @Transactional
     public Movie addHashtag(int id, String text) {
         Hashtag hashtag = hashtagRepository.findHashtagByText(text);

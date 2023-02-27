@@ -9,7 +9,7 @@ public class Movie {
     @Id
     private int id;
     private String name;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "movie_hashtag",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name= "hashtag_text"))

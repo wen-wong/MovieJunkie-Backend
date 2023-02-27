@@ -1,4 +1,4 @@
-package ca.mcgill.ecse428.moviejunkie.acceptance.stepDefinitions.movie;
+package ca.mcgill.ecse428.moviejunkie.acceptance.stepDefinitions.hashtag;
 
 import ca.mcgill.ecse428.moviejunkie.MovieJunkieApplication;
 import org.junit.platform.suite.api.IncludeEngines;
@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @Suite
 @IncludeEngines("cucumber")
-@SelectClasspathResource("features/movie/")
+@SelectClasspathResource("features/hashtag/")
 @SpringBootTest(classes = MovieJunkieApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class MovieAcceptanceTestSuite {
+public class HashtagAcceptanceTestSuite {
 }
