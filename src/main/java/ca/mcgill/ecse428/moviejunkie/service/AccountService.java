@@ -97,4 +97,48 @@ public class AccountService {
       return account;
     }
   }
+
+  public Account login(String username, String email, String password) throws AccountException {
+    if (username == null && email == null) {
+      throw new AccountException("Please input your username or email.");
+    }
+
+    if (password == null) {
+      throw new AccountException("Please input your password");
+    }
+
+    Account account;
+
+    if (username != null) {
+      account = accountRepository.findAccountByUsername(username);
+
+      if (account == null) {
+        throw new AccountException("Account with username " + username + " does not exist.");
+      }
+
+      if (account.getPassword().equals(password)) {
+        return account;
+      }
+
+      else {
+        throw new AccountException("Password does not match password for username " + username + ".");
+      }
+    }
+
+    else {
+      account = accountRepository.findAccountByEmail(email);
+
+      if (email == null) {
+        throw new AccountException("Account with email " + email + " does not exist.");
+      }
+
+      if (account.getPassword().equals(password)) {
+        return account;
+      }
+
+      else {
+        throw new AccountException("Password does not match password for email " + email + ".");
+      }
+    }
+  }
 }
