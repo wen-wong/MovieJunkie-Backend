@@ -128,7 +128,7 @@ public class AccountService {
     else {
       account = accountRepository.findAccountByEmail(email);
 
-      if (email == null) {
+      if (account == null) {
         throw new AccountException("Account with email " + email + " does not exist.");
       }
 
