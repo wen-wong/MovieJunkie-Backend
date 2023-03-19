@@ -51,16 +51,14 @@ public class HashtagController {
      */
     //get a set of all movies that correspond to the search list of hashtags (they can be complete or incomplete)
     @GetMapping(value = {"/movie/search/incomplete/hashtags", "/movie/search/incomplete/hashtags/"})
-    public Set<MovieDTO> getMoviesByIncompleteHashtags(@RequestBody Map<String, List<String>> requestBody) {
-        List<String> incompleteHashtags = requestBody.get("hashtags");
-        return MovieDTO.convertToDTO(service.getMovieListByIncompleteHashtagList(incompleteHashtags.toArray(new String[0])));
+    public Set<MovieDTO> getMoviesByIncompleteHashtags(@RequestParam("hashtags") String[] hashtags) {
+        return MovieDTO.convertToDTO(service.getMovieListByIncompleteHashtagList(hashtags));
     }
 
     //get a set of all hashtags that correspond to the search list of hashtags (they can be complete or incomplete)
     @GetMapping(value = {"/hashtag/incomplete", "/hashtag/incomplete/"})
-    public Set<HashtagDTO> getHashtagsByIncompleteHashtags(@RequestBody Map<String, List<String>> requestBody){
-        List<String> incompleteHashtags = requestBody.get("hashtags");
-        return HashtagDTO.convertToDTO(service.getHashtagByIncompleteHashtagList(incompleteHashtags.toArray(new String[0])));
+    public Set<HashtagDTO> getHashtagsByIncompleteHashtags(@RequestParam("hashtags") String[] hashtags){
+        return HashtagDTO.convertToDTO(service.getHashtagByIncompleteHashtagList(hashtags));
     }
 
 
