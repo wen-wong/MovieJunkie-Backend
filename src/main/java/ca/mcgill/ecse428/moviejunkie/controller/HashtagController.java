@@ -8,6 +8,9 @@ import ca.mcgill.ecse428.moviejunkie.service.HashtagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @CrossOrigin(origins = "*")
@@ -36,6 +39,30 @@ public class HashtagController {
     public Set<MovieDTO> getMoviesByHashtagList(@RequestParam("hashtags") String[] hashtags) {
         return MovieDTO.convertToDTO(service.getMovieListByHashtagList(hashtags));
     }
+
+    /*
+    Note, the /movies/search/hashtags method above works in postman, but it's unclear how to input the JSON request associated with it
+    To use the method below, the JSON body should look like this:
+    {
+    "hashtags": ["ht1", ...]
+    }
+    This method works by checking if any of the hashtags in our system contain the characters that have been searched for
+    ie they can be incomplete (someone searching for "fu" can find movies associated with hashtag "fun")
+     */
+    //get a set of all movies that correspond to the search list of hashtags (they can be complete or incomplete)
+    @GetMapping(value = {"/movie/search/incomplete/hashtags", "/movie/search/incomplete/hashtags/"})
+    public Set<MovieDTO> getMoviesByIncompleteHashtags(@RequestBody Map<String, List<String>> requestBody) {
+        List<String> incompleteHashtags = requestBody.get("hashtags");
+        return MovieDTO.convertToDTO(service.getMovieListByIncompleteHashtagList(incompleteHashtags.toArray(new String[0])));
+    }
+
+    //get a set of all hashtags that correspond to the search list of hashtags (they can be complete or incomplete)
+    @GetMapping(value = {"/hashtag/incomplete", "/hashtag/incomplete/"})
+    public Set<HashtagDTO> getHashtagsByIncompleteHashtags(@RequestBody Map<String, List<String>> requestBody){
+        List<String> incompleteHashtags = requestBody.get("hashtags");
+        return HashtagDTO.convertToDTO(service.getHashtagByIncompleteHashtagList(incompleteHashtags.toArray(new String[0])));
+    }
+
 
     @PostMapping(value = {"/hashtag/create", "/hashtag/create/"})
     public HashtagDTO createHashtag(@RequestParam("text") String text) {
