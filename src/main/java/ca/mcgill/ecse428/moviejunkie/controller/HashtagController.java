@@ -39,16 +39,7 @@ public class HashtagController {
     public Set<MovieDTO> getMoviesByHashtagList(@RequestParam("hashtags") String[] hashtags) {
         return MovieDTO.convertToDTO(service.getMovieListByHashtagList(hashtags));
     }
-
-    /*
-    Note, the /movies/search/hashtags method above works in postman, but it's unclear how to input the JSON request associated with it
-    To use the method below, the JSON body should look like this:
-    {
-    "hashtags": ["ht1", ...]
-    }
-    This method works by checking if any of the hashtags in our system contain the characters that have been searched for
-    ie they can be incomplete (someone searching for "fu" can find movies associated with hashtag "fun")
-     */
+    
     //get a set of all movies that correspond to the search list of hashtags (they can be complete or incomplete)
     @GetMapping(value = {"/movie/search/incomplete/hashtags", "/movie/search/incomplete/hashtags/"})
     public Set<MovieDTO> getMoviesByIncompleteHashtags(@RequestParam("hashtags") String[] hashtags) {
