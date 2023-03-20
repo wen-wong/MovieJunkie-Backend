@@ -1,9 +1,9 @@
 package ca.mcgill.ecse428.moviejunkie.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Account {
@@ -11,6 +11,11 @@ public class Account {
     private String username;
     private String password;
     private String email;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "account_playlist",
+            joinColumns = @JoinColumn(name = "account_username"),
+            inverseJoinColumns = @JoinColumn(name= "playlist_id"))
+    private Set<Playlist> playlists;
 
     public Account(){}
 
@@ -18,6 +23,7 @@ public class Account {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.playlists = new HashSet<Playlist>();
     }
 
     public String getUsername() {
@@ -42,5 +48,23 @@ public class Account {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<Playlist> getPlaylists() { return playlists; }
+    public void setPlaylists(Set<Playlist> playlists) { this.playlists = playlists; }
+    public void addPlaylist(Playlist playlist) {
+        this.playlists.add(playlist);
+    }
+    public void removePlaylist(int id) {
+        Playlist playlist = null;
+        for (Playlist plylst : this.playlists) {
+            if (id == plylst.getId()) {
+                playlist = plylst;
+            }
+        }
+        if (playlist != null) {
+            this.playlists.remove(playlist);
+            playlist.setAccount(null);
+        }
     }
 }
