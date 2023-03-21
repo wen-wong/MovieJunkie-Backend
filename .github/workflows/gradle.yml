@@ -51,6 +51,7 @@ jobs:
         echo "tmdb.apikey=f4a943efca00a3cd96ac56ff8ad1ea3c" >> ${{ env.APP_PATH }}
         cat ${{ env.APP_PATH }}
         ls -la ./src/main/resources
+        chmod u+x ${{ env.APP_PATH }}
     - name: Validate Gradle wrapper
       uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
     - name: Add permission
