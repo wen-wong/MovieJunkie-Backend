@@ -38,7 +38,7 @@ jobs:
     - name: Create application.properties file
       run : |
         rm -rf $APP_PATH
-        echo "server.port=\${PORT:8080}" >> ${{ env.APP_PATH }}
+        echo "server.port=8080" >> ${{ env.APP_PATH }}
         echo "spring.datasource.driver-class-name=org.postgresql.Driver" >> ${{ env.APP_PATH }}
         echo "spring.datasource.url=jdbc:postgresql://localhost:5432/moviejunkie" >> ${{ env.APP_PATH }}
         echo "spring.datasource.username=spring" >> ${{ env.APP_PATH }}
