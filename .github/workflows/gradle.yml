@@ -39,16 +39,16 @@ jobs:
       run : |
         rm -rf $APP_PATH
         echo "server.port=${PORT:8080}" >> $APP_PATH
-        echo "spring.datasource.driver-class-name=org.postgresql.Driver" > $APP_PATH
-        echo "spring.datasource.url=jdbc:postgresql://localhost:5432/moviejunkie" > $APP_PATH
-        echo "spring.datasource.username=spring" > $APP_PATH
-        echo "spring.datasource.password=password" > $APP_PATH
-        echo "spring.jpa.hibernate.ddl-auto=create" > $APP_PATH
-        echo "spring.jpa.show-sql=true" > $APP_PATH
-        echo "spring.jpa.properties.hibernate.format_sql=true" > $APP_PATH
-        echo "spring.jpa.database-platform=org.hibernate.dialect.PostgresSQLDialect" > $APP_PATH
-        echo "server.error.include-message=always" > $APP_PATH
-        echo "tmdb.apikey=f4a943efca00a3cd96ac56ff8ad1ea3c" > $APP_PATH
+        echo "spring.datasource.driver-class-name=org.postgresql.Driver" >> $APP_PATH
+        echo "spring.datasource.url=jdbc:postgresql://localhost:5432/moviejunkie" >> $APP_PATH
+        echo "spring.datasource.username=spring" >> $APP_PATH
+        echo "spring.datasource.password=password" >> $APP_PATH
+        echo "spring.jpa.hibernate.ddl-auto=create" >> $APP_PATH
+        echo "spring.jpa.show-sql=true" >> $APP_PATH
+        echo "spring.jpa.properties.hibernate.format_sql=true" >> $APP_PATH
+        echo "spring.jpa.database-platform=org.hibernate.dialect.PostgresSQLDialect" >> $APP_PATH
+        echo "server.error.include-message=always" >> $APP_PATH
+        echo "tmdb.apikey=f4a943efca00a3cd96ac56ff8ad1ea3c" >> $APP_PATH
     - name: Validate Gradle wrapper
       uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
     - name: Add permission
