@@ -49,9 +49,8 @@ jobs:
         echo "spring.jpa.database-platform=org.hibernate.dialect.PostgresSQLDialect" >> ${{ env.APP_PATH }}
         echo "server.error.include-message=always" >> ${{ env.APP_PATH }}
         echo "tmdb.apikey=f4a943efca00a3cd96ac56ff8ad1ea3c" >> ${{ env.APP_PATH }}
-        cat ${{ env.APP_PATH }}
         chmod a+x ${{ env.APP_PATH }}
-        ls -a ./src/main/resources
+        ls -l ./src/main/resources
     - name: Validate Gradle wrapper
       uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
     - name: Add permission
