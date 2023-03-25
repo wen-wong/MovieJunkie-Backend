@@ -1,7 +1,12 @@
 package ca.mcgill.ecse428.moviejunkie.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -12,15 +17,19 @@ public class Playlist {
     private String title;
     private String description;
     @ManyToOne
+    @Cascade(CascadeType.SAVE_UPDATE)
     private Account account;
     @ManyToMany
     private Set<Movie> movies;
-    public Playlist(String title) {
+    public Playlist(Account account, String title) {
+        this.account = account;
         this.title = title;
     }
-    public Playlist(String title, String description) {
+    public Playlist(Account account, String title, String description) {
+        this.account = account;
         this.title = title;
         this.description = description;
+        this.movies = new HashSet<>(Collections.EMPTY_SET);
     }
     public Playlist(){}
     public int getId() {
@@ -47,7 +56,7 @@ public class Playlist {
     public Set<Movie> getMovies() {
         return movies;
     }
-    public void setMovies() {
+    public void setMovies(Set<Movie> movies) {
         this.movies = movies;
     }
     public void addMovie(Movie movie) {

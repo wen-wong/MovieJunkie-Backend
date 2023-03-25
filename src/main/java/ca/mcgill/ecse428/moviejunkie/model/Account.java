@@ -11,7 +11,7 @@ public class Account {
     private String username;
     private String password;
     private String email;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "account_playlist",
             joinColumns = @JoinColumn(name = "account_username"),
             inverseJoinColumns = @JoinColumn(name= "playlist_id"))
@@ -57,9 +57,9 @@ public class Account {
     }
     public void removePlaylist(int id) {
         Playlist playlist = null;
-        for (Playlist plylst : this.playlists) {
-            if (id == plylst.getId()) {
-                playlist = plylst;
+        for (Playlist pl : this.playlists) {
+            if (id == pl.getId()) {
+                playlist = pl;
             }
         }
         if (playlist != null) {

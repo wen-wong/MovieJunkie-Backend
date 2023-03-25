@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface PlaylistRepository extends CrudRepository<Playlist, Integer> {
     Playlist findPlaylistById(int id);
-    List<Playlist> findPlaylistsByAccountUsername(String username);
 }
