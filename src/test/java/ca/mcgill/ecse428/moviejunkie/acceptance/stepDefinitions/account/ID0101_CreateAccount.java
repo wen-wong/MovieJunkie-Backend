@@ -1,5 +1,6 @@
 package ca.mcgill.ecse428.moviejunkie.acceptance.stepDefinitions.account;
 
+import ca.mcgill.ecse428.moviejunkie.controller.ErrorObj;
 import ca.mcgill.ecse428.moviejunkie.dto.AccountDTO;
 import ca.mcgill.ecse428.moviejunkie.repository.AccountRepository;
 import ca.mcgill.ecse428.moviejunkie.service.AccountService;
@@ -78,6 +79,7 @@ public class ID0101_CreateAccount {
     @Then("the error message shall be {string}")
     public void the_error_message_shall_be(String errorMessage) throws JSONException {
         // Check if error message is correct
-         assertEquals(errorMessage, response.getBody());
+        JSONObject jsonObject = new JSONObject(response.getBody());
+        assertEquals(errorMessage, jsonObject.getString("errorMsg"));
     }
 }
