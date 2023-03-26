@@ -32,7 +32,6 @@ public class PlaylistService {
         Account account = accountService.getAccount(username);
         Playlist playlist = new Playlist(account, title, description);
         account.addPlaylist(playlist);
-        playlistRepository.save(playlist);
         accountRepository.save(account);
         return playlist;
     }

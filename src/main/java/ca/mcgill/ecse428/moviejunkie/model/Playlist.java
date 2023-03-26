@@ -5,7 +5,6 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,12 +17,15 @@ public class Playlist {
     private String description;
     @ManyToOne
     @Cascade(CascadeType.SAVE_UPDATE)
+    @JoinColumn(name = "account_username", insertable = false, updatable = false)
     private Account account;
     @ManyToMany
     private Set<Movie> movies;
     public Playlist(Account account, String title) {
         this.account = account;
         this.title = title;
+        this.description = "";
+        this.movies = new HashSet<>(Collections.EMPTY_SET);
     }
     public Playlist(Account account, String title, String description) {
         this.account = account;

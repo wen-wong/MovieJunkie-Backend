@@ -11,10 +11,8 @@ public class Account {
     private String username;
     private String password;
     private String email;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "account_playlist",
-            joinColumns = @JoinColumn(name = "account_username"),
-            inverseJoinColumns = @JoinColumn(name= "playlist_id"))
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_username")
     private Set<Playlist> playlists;
 
     public Account(){}
