@@ -38,6 +38,14 @@ public class PlaylistController {
                                            @RequestParam("movieIds") int[] movIds) {
         return PlaylistDTO.convertToDTO(playlistService.addMovieListToPlaylist(username, id, movIds));
     }
+    //change movie order within playlist
+    //returns updated playlist with new order
+    @PutMapping(value = {"/{username}/playlist/{id}/{direction}/edit-order", "/{username}/playlist/{id}/{direction}/edit-order"})
+    public PlaylistDTO editPlayListOrder(@PathVariable("username") String username,
+                                           @PathVariable("id") int id,
+                                           @RequestParam("movieId") int movId, @PathVariable("id") boolean direction ) {
+        return PlaylistDTO.convertToDTO(playlistService.reorderPlaylist(username, id, movId,direction));
+    }
     //PUT
     //update title
     @PutMapping(value = {"/{username}/playlist/{id}/update-title", "/{username}/playlist/{id}/update-title/"})
