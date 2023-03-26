@@ -8,6 +8,7 @@ import ca.mcgill.ecse428.moviejunkie.repository.PlaylistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -100,4 +101,6 @@ public class PlaylistService {
         accountRepository.save(account);
         playlistRepository.delete(playlist);
     }
+
+
 }
