@@ -156,9 +156,18 @@ public class PlaylistService {
         for (int i = 0; i < pSize; i++) {               //iterate through movie list to find movie based on movID
             if (movId==listPlaylist.get(i).getId()) {
                 if (offset){
-                    Collections.swap(listPlaylist,i,i+1);   //case where offset = true (increment position by 1)
+                    if (i == pSize-1){
+                        //Do nothing
+                    } else {
+                        Collections.swap(listPlaylist,i,i+1);   //case where offset = true (increment position by 1)
+                    }
                 } else {
-                    Collections.swap(listPlaylist,i,i-1);   //case where offset = false (decrement position by 1)
+                    if (i == 0){
+                        //Do nothing
+                    } else {
+                        Collections.swap(listPlaylist,i,i-1);   //case where offset = false (decrement position by 1)
+                    }
+
                 }
 
             }
