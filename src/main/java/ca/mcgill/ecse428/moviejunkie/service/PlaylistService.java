@@ -103,4 +103,45 @@ public class PlaylistService {
     }
 
 
+    //modify playlist order
+    public Playlist reorderPlaylist (String username, int id, int movId, int offset) {
+        ifAccountExists(username);
+        Playlist playlist = getPlaylist(id);
+        List<Movie> listPlaylist = playlist.getMovies();    //Get list of movies
+        Movie tempMov = null;
+        int movIndex = -1;
+        int pSize = listPlaylist.size();
+
+        for (int i = 0; i < pSize; i++) {               //iterate through movie list to find movie based on movID
+            if (movId==listPlaylist.get(i).getId()) {
+                tempMov = listPlaylist.get(i);          //Get movie and place in temporary variable
+                movIndex = i;
+                listPlaylist.remove(i);                 //Remove movie from playlist
+            }
+        }
+
+        int newIndex = movIndex + offset;;      //Calculate new index of movie in list
+        if (movIndex == -1){                    //If movIndex still = -1 then movie was not found in movie playlist
+            throw new IllegalArgumentException("Movie does not exist in playlist");
+        } else {
+            if (offset < 0) {                   //Offset less than 0 means decrement position in playlist
+                if(newIndex < 0){
+                    listPlaylist.add(0,tempMov);    //Case where movie placed at beginning of list
+                } else {
+                    listPlaylist.add(newIndex, tempMov); //Case where movie is between beginning and previous index
+                }
+            } else if (offset > 0) {            //Offset larger than 0 means increment position in playlist
+                if(newIndex >= pSize){
+                    listPlaylist.add(tempMov);      //Case where movie is placed at end of list
+                } else {
+                    listPlaylist.add(newIndex, tempMov);    //Case where movie is placed between end and previous index
+                }
+            } else {
+                listPlaylist.add(movIndex, tempMov);    //Otherwise index is the same (i.e. offset = 0)
+            }
+            playlist.setMovies(listPlaylist);
+            playlistRepository.save(playlist);
+        }
+        return playlist;
+    }
 }
