@@ -3,6 +3,7 @@ package ca.mcgill.ecse428.moviejunkie.dto;
 import ca.mcgill.ecse428.moviejunkie.model.Playlist;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -11,19 +12,19 @@ public class PlaylistDTO {
     public String title;
     public String description;
     public AccountDTO accountDTO;
-    public Set<MovieDTO> movieDTOSet;
+    public List<MovieDTO> movieDTOList;
 
-    public PlaylistDTO(int id, String title, String description, AccountDTO accountDTO, Set<MovieDTO> movieDTOSet) {
+    public PlaylistDTO(int id, String title, String description, AccountDTO accountDTO, List<MovieDTO> movieDTOList) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.accountDTO = accountDTO;
-        this.movieDTOSet = movieDTOSet;
+        this.movieDTOList = movieDTOList;
     }
     public static PlaylistDTO convertToDTO(Playlist playlist) {
         AccountDTO accountDTO = new AccountDTO(playlist.getAccount());
-        Set<MovieDTO> movieDTOSet = MovieDTO.convertToDTO(playlist.getMovies());
-        PlaylistDTO playlistDTO = new PlaylistDTO(playlist.getId(), playlist.getTitle(), playlist.getDescription(), accountDTO, movieDTOSet);
+        List<MovieDTO> movieDTOList = MovieDTO.convertToDTO(playlist.getMovies());
+        PlaylistDTO playlistDTO = new PlaylistDTO(playlist.getId(), playlist.getTitle(), playlist.getDescription(), accountDTO, movieDTOList);
         return playlistDTO;
     }
     public static Set<PlaylistDTO> convertToDTO(Set<Playlist> playlists) {

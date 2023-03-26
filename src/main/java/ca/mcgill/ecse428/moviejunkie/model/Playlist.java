@@ -4,9 +4,8 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 public class Playlist {
@@ -20,18 +19,18 @@ public class Playlist {
     @JoinColumn(name = "account_username", insertable = false, updatable = false)
     private Account account;
     @ManyToMany
-    private Set<Movie> movies;
+    private List<Movie> movies;
     public Playlist(Account account, String title) {
         this.account = account;
         this.title = title;
         this.description = "";
-        this.movies = new HashSet<>(Collections.EMPTY_SET);
+        this.movies = new LinkedList<>();
     }
     public Playlist(Account account, String title, String description) {
         this.account = account;
         this.title = title;
         this.description = description;
-        this.movies = new HashSet<>(Collections.EMPTY_SET);
+        this.movies = new LinkedList<>();
     }
     public Playlist(){}
     public int getId() {
@@ -55,10 +54,10 @@ public class Playlist {
     public void setAccount(Account account) {
         this.account = account;
     }
-    public Set<Movie> getMovies() {
+    public List<Movie> getMovies() {
         return movies;
     }
-    public void setMovies(Set<Movie> movies) {
+    public void setMovies(List<Movie> movies) {
         this.movies = movies;
     }
     public void addMovie(Movie movie) {
