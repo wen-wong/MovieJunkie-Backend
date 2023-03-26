@@ -44,8 +44,14 @@ public class ID0104_Login {
   }
 
   @Then("the system will be logged into the account")
-  public void theSystemWillBeLoggedIntoTheAccount() {
-    assertTrue(true);
+  public void theSystemWillBeLoggedIntoTheAccount() throws JSONException {
+    JSONObject jsonObject = new JSONObject(response.getBody());
+
+    try {
+      assertNotNull(jsonObject.getString("username"));
+    } catch (JSONException e) {
+      fail();
+    }
   }
 
   @And("a user enters an invalid {string} or {string}")
