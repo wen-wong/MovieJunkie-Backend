@@ -72,8 +72,15 @@ public class ID0104_Login {
     assertNotNull(errorMsg);
   }
 
-  @And("no account will be logged in")
-  public void noAccountWillBeLoggedIn() {
-    assertTrue(true);
+  @And("the account shall not be authenticated")
+  public void theAccountShallNotBeAuthenticated() throws JSONException {
+    JSONObject jsonObject = new JSONObject(response.getBody());
+
+    try {
+      String errorMsg = jsonObject.getString("errorMsg");
+      assertNotNull(errorMsg);
+    } catch (JSONException e) {
+      fail();
+    }
   }
 }
