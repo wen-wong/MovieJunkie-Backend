@@ -1,8 +1,6 @@
 Feature: Create hashtag
   As a user, I would like to create hashtag so that I can tag movies with this new hashtag.
 
-  # For this feature file, we are not using
-
   Background:
     Given the following hashtags exist in the system:
       | water       |
