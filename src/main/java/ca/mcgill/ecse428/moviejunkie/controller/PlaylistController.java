@@ -40,7 +40,7 @@ public class PlaylistController {
     }
     //change movie order within playlist
     //returns updated playlist with new order
-    @PutMapping(value = {"/{username}/playlist/{id}/{direction}/edit-order", "/{username}/playlist/{id}/{direction}/edit-order"})
+    @PutMapping(value = {"/{username}/playlist/{id}/{movieId}/{direction}/edit-order", "/{username}/playlist/{id}/{movieId}/{direction}/edit-order"})
     public PlaylistDTO editPlayListOrder(@PathVariable("username") String username,
                                            @PathVariable("id") int id,
                                            @RequestParam("movieId") int movId, @PathVariable("id") boolean direction ) {
