@@ -30,8 +30,14 @@ public class PlaylistService {
     }
     //create
     //create playlist
-    public Playlist createPlaylist(String username, String title, String description) {
+    public Playlist createPlaylist(String username, String title, String description) throws IllegalArgumentException{
         Account account = accountService.getAccount(username);
+        if (title == null || title.length() < 0) throw new IllegalArgumentException("Invalid title");
+        for (Playlist playlist : account.getPlaylists()) {
+            if (playlist.getTitle().equals(title)) {
+                throw new IllegalArgumentException("Title already taken");
+            }
+        }
         Playlist playlist = new Playlist(account, title, description);
         account.addPlaylist(playlist);
         accountRepository.save(account);
