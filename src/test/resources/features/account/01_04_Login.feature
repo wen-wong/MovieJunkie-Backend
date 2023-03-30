@@ -1,5 +1,5 @@
 Feature: Log in
-    As a user, I would like to log in to view my previous accunt activity and created playlists and reviews.
+    As a user, I would like to log in to view my previous account activity and created playlists and reviews.
 
     Background:
         Given the following accounts exist in the system:
@@ -8,8 +8,7 @@ Feature: Log in
             | bradpitt | brad@email.com    | Fightclub |
         
     Scenario Outline: Successfuly logging in
-        When a user is on the log in page
-        And the user enters a valid "<username>", and "<password>"
+        When the user enters a valid "<username>", and "<password>"
         Then the system will be logged into the account
 
         Examples:
@@ -18,10 +17,9 @@ Feature: Log in
             | bradpitt | Fightclub |
 
     Scenario Outline: Failing to log in because of incorrect username or password
-        When a user is on the log in page
-        And a user enters an invalid "<username>" or "<password>"
+        When a user enters an invalid "<username>" or "<password>"
         Then the system will give an error message
-        And no account will be logged in
+        And the account shall not be authenticated
 
         Examples:
             | username | password  |
