@@ -53,8 +53,13 @@ public class AccountController
 
     @PostMapping(value = {"/account/delete", "/account/delete/"})
     @ResponseBody
-    public void deleteAccount(@RequestBody AccountDTO request) throws AccountException {
-        service.deleteAccount(request.getUsername(), request.getPassword());
+    public ResponseEntity deleteAccount(@RequestBody AccountDTO request) throws AccountException {
+        try {
+            service.deleteAccount(request.getUsername(), request.getPassword());
+            return ResponseEntity.status(HttpStatus.OK).body("");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @PostMapping(value= {"account/login","/account/login/"})

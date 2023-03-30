@@ -57,13 +57,16 @@ public class AccountService {
   @Transactional
   public void deleteAccount(String username, String password) throws AccountException {
       Account account=accountRepository.findAccountByUsername(username);
-      String pass = account.getPassword();
+      String pass = null;
+      if (account != null) {
+        pass = account.getPassword();
+      }
 
       if(account==null){
         throw new AccountException("Account not found");
       } else if (password == null){
         throw new AccountException("Password must not be null");
-      } else if (!password.equals(pass)){
+      } else if (pass != null && !password.equals(pass)){
         throw new AccountException("Sorry, the password you have entered is incorrect");
       } else {
         accountRepository.delete(account);
