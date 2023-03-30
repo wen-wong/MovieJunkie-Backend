@@ -8,21 +8,22 @@ Feature: Movie hashtag search
             | Horror   |
             | Cozy     |
 
+        #Home Alone (771), Elf (10719), Toy Story (862)
         And the following movies have been tagged with "Cozy"
-            | movies     |
-            | Home Alone |
-            | Elf        |
-            | Toy Story  |
+            | movieId |
+            | 771     |
+            | 10719   |
+            | 862     |
 
-    Scenario Outline: Successfully get movies with a hashtag
+    Scenario: Successfully get movies with a hashtag
         When a user searches hashtag "Cozy"
         Then the system shall return a list with 3 movies
-        And the list of movies shall contain "Home Alone", "Elf", and "Toy Story"
+        And the list of movies shall contain movie ids <771>, <10719>, and <862>
 
-    Scenario Outline: Successfully search an empty hashtag
+    Scenario: Successfully search an empty hashtag
         When a user searches hashtag "Horror"
         Then the system shall return a list with 0 movies
 
-    Scenario Outline: Failure in searching a hashtag because it doesn't exist
+    Scenario: Failure in searching a hashtag because it doesn't exist
         When a user searches hashtag "top50"
-        Then the system shall return an error message 
+        Then the system shall return no movies
