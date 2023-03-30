@@ -3,6 +3,8 @@ package ca.mcgill.ecse428.moviejunkie.dto;
 import ca.mcgill.ecse428.moviejunkie.model.Movie;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 public class MovieDTO {
@@ -36,6 +38,13 @@ public class MovieDTO {
     }
     public static Set<MovieDTO> convertToDTO(Set<Movie> movieList) {
         Set<MovieDTO> movieDTOList = new HashSet<MovieDTO>();
+        for (Movie movie : movieList) {
+            movieDTOList.add(convertToDTO(movie));
+        }
+        return movieDTOList;
+    }
+    public static List<MovieDTO> convertToDTO(List<Movie> movieList) {
+        List<MovieDTO> movieDTOList = new LinkedList<>();
         for (Movie movie : movieList) {
             movieDTOList.add(convertToDTO(movie));
         }
