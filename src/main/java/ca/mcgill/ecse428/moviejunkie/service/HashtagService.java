@@ -82,6 +82,34 @@ public class HashtagService {
     }
 
     @Transactional
+    public Set<Movie> getMovieListByIncompleteHashtagList(String[] hashtags) {
+        Set<Movie> movieList = new HashSet<>();
+        Set<Hashtag> allHashtags = getAllHashtags();
+        for(Hashtag ht : allHashtags){
+            for(String text : hashtags){
+                if (ht.getText().contains(text)){
+                    movieList.addAll(ht.getMovies());
+                }
+            }
+        }
+        return movieList;
+    }
+
+    @Transactional
+    public Set<Hashtag> getHashtagByIncompleteHashtagList(String[] hashtags){
+        Set<Hashtag> hashtagSet = new HashSet<>();
+        Set<Hashtag> allHashtags = getAllHashtags();
+        for(Hashtag ht : allHashtags){
+            for(String text : hashtags){
+                if (ht.getText().contains(text)){
+                    hashtagSet.add(ht);
+                }
+            }
+        }
+        return hashtagSet;
+    }
+
+    @Transactional
     public void deleteHashtag(String text) throws IllegalArgumentException {
         Hashtag hashtag = hashtagRepository.findHashtagByText(text);
         if (hashtag == null) {
