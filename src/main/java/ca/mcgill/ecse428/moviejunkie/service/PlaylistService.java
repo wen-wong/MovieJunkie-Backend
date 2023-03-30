@@ -44,6 +44,7 @@ public class PlaylistService {
         return playlist;
     }
     //add movie to playlist
+
     public Playlist addMovieToPlaylist(Playlist playlist, int movId) throws IllegalArgumentException{
         Movie movie = movieService.getMovie(movId);
         if (movie == null) throw new IllegalArgumentException("Movie not found");

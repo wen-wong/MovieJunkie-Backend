@@ -36,7 +36,7 @@ public class HashtagController {
     public Set<MovieDTO> getMoviesByHashtagList(@RequestParam("hashtags") String[] hashtags) {
         return MovieDTO.convertToDTO(service.getMovieListByHashtagList(hashtags));
     }
-    
+
     //get a set of all movies that correspond to the search list of hashtags (they can be complete or incomplete)
     @GetMapping(value = {"/movie/search/incomplete/hashtags", "/movie/search/incomplete/hashtags/"})
     public Set<MovieDTO> getMoviesByIncompleteHashtags(@RequestParam("hashtags") String[] hashtags) {
