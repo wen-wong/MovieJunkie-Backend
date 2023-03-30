@@ -18,6 +18,7 @@ public class Playlist {
     @Cascade(CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "account_username", insertable = false, updatable = false)
     private Account account;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Movie> movies;
     public Playlist(Account account, String title) {

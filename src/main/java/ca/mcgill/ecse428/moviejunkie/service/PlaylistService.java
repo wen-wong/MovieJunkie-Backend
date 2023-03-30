@@ -7,7 +7,6 @@ import ca.mcgill.ecse428.moviejunkie.repository.AccountRepository;
 import ca.mcgill.ecse428.moviejunkie.repository.PlaylistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
