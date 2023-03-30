@@ -7,6 +7,7 @@ import ca.mcgill.ecse428.moviejunkie.repository.AccountRepository;
 import ca.mcgill.ecse428.moviejunkie.repository.PlaylistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
@@ -44,6 +45,7 @@ public class PlaylistService {
         return playlist;
     }
     //add movie to playlist
+
     public Playlist addMovieToPlaylist(Playlist playlist, int movId) throws IllegalArgumentException{
         Movie movie = movieService.getMovie(movId);
         if (movie == null) throw new IllegalArgumentException("Movie not found");
