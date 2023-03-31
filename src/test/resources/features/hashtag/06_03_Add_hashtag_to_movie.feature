@@ -37,7 +37,7 @@ Feature: Add hashtags to movies
       | kids        | 4567890 | 1           |
       | roadtrip    | 3141592 | 2           |
 
-  Scenario Outline: Successfully adding a pre-existing hashtag to a pre-existing movie
+  Scenario Outline: Successfully adding a pre-existing hashtag to a non-existing movie
     When a hashtag "<hashtagName>" is added to movie <movieID>
     Then movie <movieID> shall have 1 hashtag(s) associated to it
     And movie <movieID> shall have "<hashtagName>" associated to it

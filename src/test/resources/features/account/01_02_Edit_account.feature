@@ -8,7 +8,7 @@ Feature: Edit user account
       | scarjo        | scarlettjohansson@email.com | BlackW1d0w |
       | morganfreeman | morganfreeman@email.com     | Shawshank  |
 
-  Scenario Outline: Successfully editing account information (first name, last name, email, or password)
+  Scenario Outline: Successfully editing account information (email, or password)
     Given "<username>" is logged in
     When the user changes their "<infoType>" to "<newInfo>"
     Then "<username>"'s "<infoType>" shall be "<newInfo>"

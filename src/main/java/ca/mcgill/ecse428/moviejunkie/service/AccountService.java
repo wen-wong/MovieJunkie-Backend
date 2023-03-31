@@ -57,13 +57,16 @@ public class AccountService {
   @Transactional
   public void deleteAccount(String username, String password) throws AccountException {
       Account account=accountRepository.findAccountByUsername(username);
-      String pass = account.getPassword();
+      String pass = null;
+      if (account != null) {
+        pass = account.getPassword();
+      }
 
       if(account==null){
         throw new AccountException("Account not found");
       } else if (password == null){
         throw new AccountException("Password must not be null");
-      } else if (!password.equals(pass)){
+      } else if (pass != null && !password.equals(pass)){
         throw new AccountException("Sorry, the password you have entered is incorrect");
       } else {
         accountRepository.delete(account);
@@ -95,6 +98,50 @@ public class AccountService {
     }
     else{
       return account;
+    }
+  }
+
+  public Account login(String username, String email, String password) throws AccountException {
+    if (username == null && email == null) {
+      throw new AccountException("Please input your username or email.");
+    }
+
+    if (password == null) {
+      throw new AccountException("Please input your password");
+    }
+
+    Account account;
+
+    if (username != null) {
+      account = accountRepository.findAccountByUsername(username);
+
+      if (account == null) {
+        throw new AccountException("Account with username " + username + " does not exist.");
+      }
+
+      if (account.getPassword().equals(password)) {
+        return account;
+      }
+
+      else {
+        throw new AccountException("Password does not match password for username " + username + ".");
+      }
+    }
+
+    else {
+      account = accountRepository.findAccountByEmail(email);
+
+      if (account == null) {
+        throw new AccountException("Account with email " + email + " does not exist.");
+      }
+
+      if (account.getPassword().equals(password)) {
+        return account;
+      }
+
+      else {
+        throw new AccountException("Password does not match password for email " + email + ".");
+      }
     }
   }
 }
