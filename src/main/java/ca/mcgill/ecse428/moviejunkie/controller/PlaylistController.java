@@ -44,9 +44,9 @@ public class PlaylistController {
     @PutMapping(value = {"/{username}/playlist/{id}/{movieId}/{direction}/edit-order", "/{username}/playlist/{id}/{movieId}/{direction}/edit-order"})
     public PlaylistDTO editPlayListOrder(@PathVariable("username") String username,
                                            @PathVariable("id") int id,
-                                           @RequestParam("movieId") int movId, @PathVariable("direction") boolean direction ) {
+                                           @PathVariable("movieId") int movieId, @PathVariable("direction") boolean direction ) {
 
-        return PlaylistDTO.convertToDTO(playlistService.reorderPlaylist(username, id, movId,direction));
+        return PlaylistDTO.convertToDTO(playlistService.reorderPlaylist(username, id, movieId,direction));
     }
     //PUT
     //update title
