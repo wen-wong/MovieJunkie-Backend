@@ -35,7 +35,7 @@ public class AccountController
             return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(account);
         }
         catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage()); // TODO: Change this into a JSON serializable object.
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorObj(e.getMessage())); // TODO: Change this into a JSON serializable object.
                                                                                        // A String cannot be serialized well int JSON
         }
     }
@@ -53,9 +53,26 @@ public class AccountController
 
     @PostMapping(value = {"/account/delete", "/account/delete/"})
     @ResponseBody
-    public void deleteAccount(@RequestBody AccountDTO request) throws AccountException {
-        service.deleteAccount(request.getUsername(), request.getPassword());
+    public ResponseEntity deleteAccount(@RequestBody AccountDTO request) throws AccountException {
+        try {
+            service.deleteAccount(request.getUsername(), request.getPassword());
+            return ResponseEntity.status(HttpStatus.OK).body("");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
 
+    @PostMapping(value= {"account/login","/account/login/"})
+    @ResponseBody
+    public ResponseEntity login(@RequestBody AccountDTO request) {
+        try {
+            Account account = service.login(request.getUsername(), request.getEmail(), request.getPassword());
+
+            return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(convertToDTO(account));
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorObj(e.getMessage()));
+        }
     }
 
     private AccountDTO convertToDTO(Account account) {
