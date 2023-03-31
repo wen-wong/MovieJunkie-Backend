@@ -2,19 +2,22 @@ Feature: Reorder movies in a playlist
     As a user, I would like to modify the ordering of movies in a playlist so that others who find my playlist can know the intended ordering.
 
     Background:
-        Given Given the following user is logged in:
+        Given the following user is logged in:
             | username | email             | password  |
             | robsabs  | robsabs@email.com | ECSE428   |
-        And the following playlist already exists in the system for the user
-            | playlist |
+        And the following playlists already exist in the system for the user
             | Summer   |
+        And the following movies exist in the system
+            | id | movie        |
+            | 1  | Avatar       |
+            | 2  | Pulp Fiction |
+            | 3  | Scream       |
         And the Summer playlist contains the following movies in the following order
             | movie        | ordering |
             | Avatar       | 1        |
             | Pulp Fiction | 2        |
             | Scream       | 3        |
         And the movies can be reordered by one position at a time using the following directions
-            | direction |
             | Up        |
             | Down      |
 
