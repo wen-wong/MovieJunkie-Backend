@@ -1,6 +1,7 @@
 package ca.mcgill.ecse428.moviejunkie.controller;
 
 import ca.mcgill.ecse428.moviejunkie.dto.PlaylistDTO;
+import ca.mcgill.ecse428.moviejunkie.model.Playlist;
 import ca.mcgill.ecse428.moviejunkie.service.PlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -43,8 +44,9 @@ public class PlaylistController {
     @PutMapping(value = {"/{username}/playlist/{id}/{movieId}/{direction}/edit-order", "/{username}/playlist/{id}/{movieId}/{direction}/edit-order"})
     public PlaylistDTO editPlayListOrder(@PathVariable("username") String username,
                                            @PathVariable("id") int id,
-                                           @RequestParam("movieId") int movId, @PathVariable("direction") boolean direction ) {
-        return PlaylistDTO.convertToDTO(playlistService.reorderPlaylist(username, id, movId,direction));
+                                           @PathVariable("movieId") int movieId, @PathVariable("direction") boolean direction ) {
+
+        return PlaylistDTO.convertToDTO(playlistService.reorderPlaylist(username, id, movieId,direction));
     }
     //PUT
     //update title
