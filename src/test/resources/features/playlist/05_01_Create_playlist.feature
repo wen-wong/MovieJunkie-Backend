@@ -6,7 +6,7 @@ Feature: Create Playlist
             | username | email             | password  |
             | robsabs  | robsabs@email.com | ECSE428   |
 
-        And the following playlist already exists in the system for the user
+        And the following playlists already exist in the system for the user
             | Summer |
 
         
@@ -22,17 +22,17 @@ Feature: Create Playlist
             | Action       |
 
     
-    Scenario Outline: Unsuccessfully creating a plyalist because the name is taken
+    Scenario Outline: Unsuccessfully creating a playlist because the name is taken
         When a playlist "<playlistname>" is created
         Then 1 playlist shall exist in the system
         And the system gives an error message
 
-        Examples :
+        Examples:
         | playlistname |
         | Summer       |
 
 
-    Scenario Outline: Unsuccessfully creating a playlist because no name is given
-        When a playist is created with no name
+    Scenario: Unsuccessfully creating a playlist because no name is given
+        When a playlist is created with no name
         Then 1 playlist shall exist in the system
         And the system gives an error message
