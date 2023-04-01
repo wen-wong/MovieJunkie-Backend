@@ -86,7 +86,7 @@ public class ID0503_ReorderMoviesInPlaylist {
                     }
 
                 }
-                playlistService.addMovieListToPlaylist(ID0501_CreatePlaylist.getLoggedIn().getUsername(), playlist.getId(), movieIds);
+                selectedPlaylist = playlistService.addMovieListToPlaylist(ID0501_CreatePlaylist.getLoggedIn().getUsername(), playlist.getId(), movieIds);
             }
         }
     }
@@ -129,7 +129,7 @@ public class ID0503_ReorderMoviesInPlaylist {
             }
         }
 
-        playlistService.reorderPlaylist(ID0501_CreatePlaylist.getLoggedIn().getUsername(), selectedPlaylist.getId(), movieId, directions.get(arg1));
+        selectedPlaylist = playlistService.reorderPlaylist(ID0501_CreatePlaylist.getLoggedIn().getUsername(), selectedPlaylist.getId(), movieId, directions.get(arg1));
     }
 
     @Then("the playlist {string} contains the movie {string} in position {string}")
@@ -138,7 +138,7 @@ public class ID0503_ReorderMoviesInPlaylist {
 
         for (Movie movie : selectedPlaylist.getMovies()) {
             if (movie.getName().equals(arg1)) {
-                assertEquals(ctr, Integer.parseInt(arg2));
+                assertEquals(Integer.parseInt(arg2), ctr);
                 break;
             }
 
@@ -163,7 +163,7 @@ public class ID0503_ReorderMoviesInPlaylist {
 
     @And("the user selects an invalid {string} direction")
     public void theUserSelectsAnInvalidDirection(String arg0) {
-        playlistService.reorderPlaylist(ID0501_CreatePlaylist.getLoggedIn().getUsername(), selectedPlaylist.getId(), selectedMovie.getId(), directions.get(arg0));
+        selectedPlaylist = playlistService.reorderPlaylist(ID0501_CreatePlaylist.getLoggedIn().getUsername(), selectedPlaylist.getId(), selectedMovie.getId(), directions.get(arg0));
     }
 
     @Then("the playlist {string} does not change order")

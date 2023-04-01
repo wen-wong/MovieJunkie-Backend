@@ -81,8 +81,8 @@ public class ID0502_AddMovieToPlaylist {
         }
         assertTrue(found);
 
-        playlistService.addMovieToPlaylist(selectedPlaylist, selectedMovie.getId());
-
+        int[] id = new int[]{selectedMovie.getId()};
+        playlistService.addMovieListToPlaylist(selectedPlaylist.getAccount().getUsername(), selectedPlaylist.getId(), id);
     }
 
     @Then("the playlist {string} contains the movie with id {string}")
@@ -118,7 +118,8 @@ public class ID0502_AddMovieToPlaylist {
     @Transactional
     public void userSearchesAndSelectsMovie(String movieid) {
         selectedMovie = movieService.getMovie(Integer.parseInt(movieid));
-        playlistService.addMovieToPlaylist(selectedPlaylist, selectedMovie.getId());
+        int[] id = new int[]{selectedMovie.getId()};
+        playlistService.addMovieListToPlaylist(selectedPlaylist.getAccount().getUsername(), selectedPlaylist.getId(), id);
     }
 
     @And("the user does not select a playlist to add movie to")
