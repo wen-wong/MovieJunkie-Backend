@@ -29,8 +29,12 @@ public class ID0501_CreatePlaylist {
     @Autowired
     private AccountService accountService;
     private String playlistErrorMessage = "";
-    private Account loggedIn;
+    private static Account loggedIn;
     ResponseEntity<String> response;
+
+    public static Account getLoggedIn() {
+        return loggedIn;
+    }
 
     @Before
     public void setup() { playlistRepository.deleteAll(); }
